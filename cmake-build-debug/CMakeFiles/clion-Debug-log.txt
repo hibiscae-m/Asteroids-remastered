@@ -1,0 +1,5 @@
+"/Users/marius/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/marius/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/marius/CLionProjects/Asteroids -B /Users/marius/CLionProjects/Asteroids/cmake-build-debug
+-- Found SFML 2.5.1 in /Library/Frameworks/SFML.framework/Resources/CMake
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/marius/CLionProjects/Asteroids/cmake-build-debug
