@@ -4,7 +4,6 @@
 
 #include "Entity.h"
 #include "Vector.h"
-#include <iostream>
 
 Entity::Entity(std::string_view texture_location) {
     if (!texture.loadFromFile(texture_location.data()))
@@ -14,7 +13,6 @@ Entity::Entity(std::string_view texture_location) {
 }
 
 void Entity::move(float deltaTime) {
-    speed -= speed * FRICTION * deltaTime;
     sf::Vector2f movement = Vector::acquire_movement(speed * deltaTime, sprite.getRotation());
     sprite.move(movement);
 }

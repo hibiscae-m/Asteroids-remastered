@@ -6,14 +6,11 @@
 #define ASTEROIDS_ASTEROID_H
 
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 
-class Asteroid {
+class Asteroid : public Entity {
 public:
     Asteroid();
-    void draw(sf::RenderWindow& window);
-private:
-    sf::Sprite sprite;
-    sf::Texture texture;
 };
 
 

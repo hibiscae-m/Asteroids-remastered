@@ -17,8 +17,6 @@ protected:
     sf::Sprite sprite;
     sf::Texture texture;
     float speed{};
-private:
-    const float FRICTION{3.f};
 };
 
 

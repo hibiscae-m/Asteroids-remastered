@@ -3,7 +3,6 @@
 //
 
 #include "Flight.h"
-#include "Vector.h"
 
 Flight::Flight() : Entity("resources/flight.png") {
     sprite.setPosition(100.f, 100.f);
@@ -20,5 +19,6 @@ void Flight::handlePlayerInputs(float deltaTime) {
 
 void Flight::move(float deltaTime) {
     handlePlayerInputs(deltaTime);
+    speed -= speed * FRICTION * deltaTime;
     Entity::move(deltaTime);
 }

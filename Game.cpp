@@ -31,6 +31,7 @@ void Game::processEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
     flight.move(temp_clock.restart().asSeconds());
+    asteroid.move(temp_clock.restart().asSeconds());
 }
 
 void Game::render() {
