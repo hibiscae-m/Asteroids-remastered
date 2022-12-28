@@ -6,20 +6,17 @@
 #define ASTEROIDS_FLIGHT_H
 
 #include <SFML/Graphics.hpp>
+#include <string_view>
+#include "Entity.h"
 
-class Flight {
+class Flight : public Entity {
 public:
     Flight();
     void handlePlayerInputs(float deltaTime);
-    void draw(sf::RenderWindow& window);
+    void move(float deltaTime) override;
 private:
-    static sf::Vector2f acquire_movement(float speed, float angle_rotation);
-    sf::Sprite sprite;
-    sf::Texture texture;
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};
-    const float FRICTION{3.f};
-    float speed{};
 };
 
 

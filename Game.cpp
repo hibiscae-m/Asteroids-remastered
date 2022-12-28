@@ -30,7 +30,7 @@ void Game::processEvents() {
     while(window.pollEvent(event))
         if (event.type == sf::Event::Closed)
             window.close();
-    flight.handlePlayerInputs(temp_clock.restart().asSeconds());
+    flight.move(temp_clock.restart().asSeconds());
 }
 
 void Game::render() {
