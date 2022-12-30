@@ -4,6 +4,7 @@
 
 #include "Entity.h"
 #include "Vector.h"
+#include <iostream>
 
 Entity::Entity(std::string_view texture_location) {
     if (!texture.loadFromFile(texture_location.data()))
@@ -19,4 +20,9 @@ void Entity::move(float deltaTime) {
 
 void Entity::draw(sf::RenderWindow& window) {
     window.draw(sprite);
+}
+
+void Entity::checkCollision(Entity& other) {
+    if (sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds()))
+        std::cout << "hit" << std::endl;
 }

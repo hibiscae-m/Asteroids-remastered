@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include "Flight.h"
 #include "Asteroid.h"
+#include "GameManager.h"
 
 class Game {
 public:
@@ -22,8 +23,7 @@ private:
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
     sf::Clock temp_clock{};
 
-    Flight flight;
-    Asteroid asteroid;
+    GameManager game_manager;
 };
 
 

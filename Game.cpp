@@ -13,6 +13,8 @@ Game::Game() :
 {}
 
 void Game::run() {
+    game_manager.add(std::make_unique<Flight>());
+    game_manager.add(std::make_unique<Asteroid>());
     sf::Clock clock;
     sf::Time time_since_last_update = sf::Time::Zero;
     while (window.isOpen()) {
@@ -30,13 +32,12 @@ void Game::processEvents() {
     while(window.pollEvent(event))
         if (event.type == sf::Event::Closed)
             window.close();
-    flight.move(temp_clock.restart().asSeconds());
-    asteroid.move(temp_clock.restart().asSeconds());
+    game_manager.move(temp_clock.restart().asSeconds());
+    game_manager.checkCollision();
 }
 
 void Game::render() {
     window.clear();
-    flight.draw(window);
-    asteroid.draw(window);
+    game_manager.draw(window);
     window.display();
 }
