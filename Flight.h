@@ -12,8 +12,8 @@
 class Flight : public Entity {
 public:
     Flight();
-    void handlePlayerInputs(float deltaTime);
-    void move(float deltaTime) override;
+    void handlePlayerInputs(float delta_time);
+    void move(float delta_time) override;
 private:
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};

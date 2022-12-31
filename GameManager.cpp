@@ -11,18 +11,18 @@ void GameManager::add(std::unique_ptr<Entity> entity) {
     entities.push_back(std::move(entity));
 }
 
-void GameManager::draw(sf::RenderWindow& window) {
+void GameManager::draw(sf::RenderWindow& window) const {
     for (const auto& entity: entities)
         entity->draw(window);
 }
 
-void GameManager::move(float delta_time) {
+void GameManager::move(const float delta_time) const {
     for (const auto& entity: entities)
         entity->move(delta_time);
     reposition();
 }
 
-void GameManager::reposition() {
+void GameManager::reposition() const {
     for (const auto& entity: entities) {
         if (entity->getPosition().x > static_cast<float>(space_width))
             entity->setPosition(0, entity->getPosition().y);
@@ -36,7 +36,7 @@ void GameManager::reposition() {
     }
 }
 
-void GameManager::checkCollision() {
+void GameManager::checkCollision() const {
     for (const auto& first_entity: entities)
         for (const auto& second_entity: entities)
             if (first_entity != second_entity)

@@ -6,23 +6,23 @@
 #include "Vector.h"
 #include <iostream>
 
-Entity::Entity(std::string_view texture_location) {
+Entity::Entity(const std::string_view texture_location) {
     if (!texture.loadFromFile(texture_location.data()))
         throw std::invalid_argument(texture_location.data());
     sprite.setTexture(texture);
     sprite.setOrigin(sprite.getGlobalBounds().width/2, sprite.getGlobalBounds().height/2);
 }
 
-void Entity::move(float deltaTime) {
-    sf::Vector2f movement = Vector::acquire_movement(speed * deltaTime, sprite.getRotation());
+void Entity::move(const float delta_time) {
+    sf::Vector2f movement = Vector::acquire_movement(speed * delta_time, sprite.getRotation());
     sprite.move(movement);
 }
 
-void Entity::draw(sf::RenderWindow& window) {
+void Entity::draw(sf::RenderWindow& window) const {
     window.draw(sprite);
 }
 
-void Entity::checkCollision(Entity& other) {
+void Entity::checkCollision(const Entity& other) const {
     if (sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds()))
         std::cout << "hit" << std::endl;
 }

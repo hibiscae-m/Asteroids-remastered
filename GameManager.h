@@ -15,10 +15,10 @@ public:
     GameManager() = delete;
     GameManager(int width, int height);
     void add(std::unique_ptr<Entity> entity);
-    void draw(sf::RenderWindow& window);
-    void move(float delta_time);
-    void reposition();
-    void checkCollision();
+    void draw(sf::RenderWindow& window) const;
+    void move(float delta_time) const;
+    void reposition() const;
+    void checkCollision() const;
 private:
     std::vector<std::unique_ptr<Entity>> entities{};
     int space_width{};

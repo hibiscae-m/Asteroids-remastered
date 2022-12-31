@@ -8,17 +8,17 @@ Flight::Flight() : Entity("resources/flight.png") {
     sprite.setPosition(100.f, 100.f);
 }
 
-void Flight::handlePlayerInputs(float deltaTime) {
+void Flight::handlePlayerInputs(const float delta_time) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         speed += ACCELERATION;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        sprite.rotate(-ANGLE_SPEED * deltaTime);
+        sprite.rotate(-ANGLE_SPEED * delta_time);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        sprite.rotate(ANGLE_SPEED * deltaTime);
+        sprite.rotate(ANGLE_SPEED * delta_time);
 }
 
-void Flight::move(float deltaTime) {
-    handlePlayerInputs(deltaTime);
-    speed -= speed * FRICTION * deltaTime;
-    Entity::move(deltaTime);
+void Flight::move(const float delta_time) {
+    handlePlayerInputs(delta_time);
+    speed -= speed * FRICTION * delta_time;
+    Entity::move(delta_time);
 }
