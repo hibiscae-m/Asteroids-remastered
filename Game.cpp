@@ -9,7 +9,8 @@ constexpr unsigned int WINDOW_LENGTH{900};
 constexpr std::string_view WINDOW_TITLE{"Game!"};
 
 Game::Game() :
-    window{sf::VideoMode(WINDOW_WIDTH, WINDOW_LENGTH), WINDOW_TITLE.data()}
+    window{sf::VideoMode(WINDOW_WIDTH, WINDOW_LENGTH), WINDOW_TITLE.data()},
+    game_manager(WINDOW_WIDTH, WINDOW_LENGTH)
 {}
 
 void Game::run() {

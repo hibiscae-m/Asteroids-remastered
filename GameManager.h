@@ -12,13 +12,17 @@
 
 class GameManager {
 public:
-    explicit GameManager() = default;
+    GameManager() = delete;
+    GameManager(int width, int height);
     void add(std::unique_ptr<Entity> entity);
     void draw(sf::RenderWindow& window);
     void move(float delta_time);
+    void reposition();
     void checkCollision();
 private:
     std::vector<std::unique_ptr<Entity>> entities{};
+    int space_width{};
+    int space_length{};
 };
 
 

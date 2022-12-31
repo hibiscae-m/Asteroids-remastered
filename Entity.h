@@ -13,6 +13,8 @@ public:
     explicit Entity(std::string_view texture_location);
     void draw(sf::RenderWindow& window);
     virtual void move(float deltaTime);
+    inline void setPosition(float x, float y) { sprite.setPosition(x, y); };
+    inline sf::Vector2f getPosition() { return sprite.getPosition(); }
     void checkCollision(Entity& other);
 protected:
     sf::Sprite sprite;
