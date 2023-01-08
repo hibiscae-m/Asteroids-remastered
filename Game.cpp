@@ -14,8 +14,8 @@ Game::Game() :
 {}
 
 void Game::run() {
-    game_manager.add(std::make_unique<Flight>());
-    game_manager.add(std::make_unique<Asteroid>());
+    game_manager.addToBuffer(std::make_unique<Flight>(game_manager));
+    game_manager.addToBuffer(std::make_unique<Asteroid>());
     sf::Clock clock;
     sf::Time time_since_last_update = sf::Time::Zero;
     while (window.isOpen()) {
@@ -24,7 +24,8 @@ void Game::run() {
             time_since_last_update -= TIME_PER_FRAME;
             processEvents();
         }
-    render();
+        render();
+        game_manager.update();
     }
 }
 

@@ -7,8 +7,13 @@
 GameManager::GameManager(int width, int length) : space_width(width), space_length(length)
 {}
 
-void GameManager::add(std::unique_ptr<Entity> entity) {
-    entities.push_back(std::move(entity));
+void GameManager::addToBuffer(std::unique_ptr<Entity> entity) {
+    buffer.push_back(std::move(entity));
+}
+
+void GameManager::add() {
+    for (auto& entity: buffer)
+        entities.push_back(std::move(entity));
 }
 
 void GameManager::draw(sf::RenderWindow& window) const {
@@ -41,4 +46,9 @@ void GameManager::checkCollision() const {
         for (const auto& second_entity: entities)
             if (first_entity != second_entity)
                 first_entity->checkCollision(*second_entity);
+}
+
+void GameManager::update() {
+    add();
+    buffer.clear();
 }

@@ -8,16 +8,18 @@
 #include <SFML/Graphics.hpp>
 #include <string_view>
 #include "Entity.h"
+#include "GameManager.h"
 
 class Flight : public Entity {
 public:
-    Flight();
+    Flight(GameManager& game_manager);
     void handlePlayerInputs(float delta_time);
     void move(float delta_time) override;
 private:
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};
     const float FRICTION{3.f};
+    GameManager& game_manager;
 };
 
 

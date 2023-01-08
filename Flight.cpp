@@ -3,8 +3,9 @@
 //
 
 #include "Flight.h"
+#include "Asteroid.h"
 
-Flight::Flight() : Entity("resources/flight.png") {
+Flight::Flight(GameManager& game_manager) : Entity("resources/flight.png"), game_manager(game_manager) {
     sprite.setPosition(100.f, 100.f);
 }
 

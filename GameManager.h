@@ -14,13 +14,16 @@ class GameManager {
 public:
     GameManager() = delete;
     GameManager(int width, int height);
-    void add(std::unique_ptr<Entity> entity);
+    void addToBuffer(std::unique_ptr<Entity> entity);
+    void update();
     void draw(sf::RenderWindow& window) const;
     void move(float delta_time) const;
-    void reposition() const;
     void checkCollision() const;
 private:
+    void add();
+    void reposition() const;
     std::vector<std::unique_ptr<Entity>> entities{};
+    std::vector<std::unique_ptr<Entity>> buffer{};
     int space_width{};
     int space_length{};
 };
