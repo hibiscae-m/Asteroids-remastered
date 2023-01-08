@@ -28,9 +28,12 @@ protected:
     virtual void reactCollision(const Entity& other);
     sf::Sprite sprite;
     sf::Texture texture;
+    sf::CircleShape hitbox;
     float speed{};
     float angle{};
     Type type = Type::Other;
+private:
+    float getDistance(sf::Vector2f first, sf::Vector2f second) const;
 };
 
 
