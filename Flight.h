@@ -16,6 +16,7 @@ public:
     void handlePlayerInputs(float delta_time);
     void move(float delta_time) override;
 private:
+    void reactCollision(const Entity& other) override;
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};
     const float FRICTION{3.f};

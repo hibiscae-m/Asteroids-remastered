@@ -22,7 +22,11 @@ void Entity::draw(sf::RenderWindow& window) const {
     window.draw(sprite);
 }
 
-void Entity::checkCollision(const Entity& other) const {
+void Entity::checkCollision(const Entity& other) {
     if (sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds()))
-        std::cout << "hit" << std::endl;
+        reactCollision(other);
+}
+
+void Entity::reactCollision(const Entity& other) {
+
 }
