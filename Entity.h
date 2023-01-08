@@ -29,6 +29,7 @@ protected:
     sf::Sprite sprite;
     sf::Texture texture;
     float speed{};
+    float angle{};
     Type type = Type::Other;
 };
 

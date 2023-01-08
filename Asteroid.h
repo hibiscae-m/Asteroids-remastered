@@ -11,6 +11,7 @@
 class Asteroid : public Entity {
 public:
     Asteroid();
+    void move(float delta_time) override;
 };
 
 

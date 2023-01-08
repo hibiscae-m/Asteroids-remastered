@@ -14,7 +14,7 @@ Entity::Entity(const std::string_view texture_location) {
 }
 
 void Entity::move(const float delta_time) {
-    sf::Vector2f movement = Vector::acquire_movement(speed * delta_time, sprite.getRotation());
+    sf::Vector2f movement = Vector::acquire_movement(speed * delta_time, angle);
     sprite.move(movement);
 }
 
