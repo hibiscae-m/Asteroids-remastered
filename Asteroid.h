@@ -12,6 +12,7 @@ class Asteroid : public Entity {
 public:
     Asteroid();
     void move(float delta_time) override;
+    void reactCollision(const Entity& other) override;
 };
 
 

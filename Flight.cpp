@@ -3,6 +3,7 @@
 //
 
 #include "Flight.h"
+#include "Asteroid.h"
 #include "Missile.h"
 #include <iostream>
 #include "Vector.h"
@@ -15,10 +16,13 @@ Flight::Flight(GameManager& game_manager) : Entity("resources/flight.png"), game
 void Flight::handlePlayerInputs(const float delta_time) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         speed += ACCELERATION;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         sprite.rotate(-ANGLE_SPEED * delta_time);
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         sprite.rotate(ANGLE_SPEED * delta_time);
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         time_since_last_shoot += clock.restart();
         if (time_since_last_shoot > sf::milliseconds(300)) {
@@ -26,6 +30,9 @@ void Flight::handlePlayerInputs(const float delta_time) {
             game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation()));
         }
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        game_manager.addToBuffer(std::make_unique<Asteroid>());
 }
 
 void Flight::move(const float delta_time) {

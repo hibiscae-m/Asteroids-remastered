@@ -9,11 +9,12 @@ Missile::Missile(sf::Vector2f position, float angle) : Entity("resources/missile
     this->angle = angle;
     sprite.setRotation(this->angle);
     speed = 3000.f;
+    type = Type::Missile;
 }
 
 void Missile::move(float delta_time) {
     lifetime += clock.restart();
-    if (lifetime > sf::seconds(2))
+    if (lifetime > sf::seconds(1))
         destructed = true;
     Entity::move(delta_time);
 }

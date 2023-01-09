@@ -18,3 +18,8 @@ void Asteroid::move(float delta_time) {
     sprite.rotate(1.f);
     Entity::move(delta_time);
 }
+
+void Asteroid::reactCollision(const Entity& other) {
+    if (other.getType() == Type::Missile)
+        destructed = true;
+}
