@@ -20,6 +20,8 @@ private:
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};
     const float FRICTION{3.f};
+    sf::Clock clock;
+    sf::Time time_since_last_shoot = sf::Time::Zero;
     GameManager& game_manager;
 };
 
