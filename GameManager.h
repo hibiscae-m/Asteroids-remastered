@@ -21,6 +21,7 @@ public:
     void checkCollision() const;
 private:
     void add();
+    void clear();
     void reposition() const;
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};

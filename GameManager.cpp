@@ -14,6 +14,7 @@ void GameManager::addToBuffer(std::unique_ptr<Entity> entity) {
 void GameManager::add() {
     for (auto& entity: buffer)
         entities.push_back(std::move(entity));
+    buffer.clear();
 }
 
 void GameManager::draw(sf::RenderWindow& window) const {
@@ -48,7 +49,13 @@ void GameManager::checkCollision() const {
                 first_entity->checkCollision(*second_entity);
 }
 
+void GameManager::clear() {
+    for (auto i = 0u; i < entities.size(); i++)
+        if (entities[i]->isDestructed())
+            entities.erase(entities.begin()+i);
+}
+
 void GameManager::update() {
+    clear();
     add();
-    buffer.clear();
 }

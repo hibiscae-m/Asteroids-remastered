@@ -24,6 +24,7 @@ public:
     inline sf::Vector2f getPosition() const { return sprite.getPosition(); }
     void checkCollision(const Entity& other);
     inline Type getType() const { return type; };
+    inline bool isDestructed() const { return destructed; };
 protected:
     virtual void reactCollision(const Entity& other);
     sf::Sprite sprite;
@@ -32,6 +33,7 @@ protected:
     float speed{};
     float angle{};
     Type type = Type::Other;
+    bool destructed{false};
 private:
     float getDistance(sf::Vector2f first, sf::Vector2f second) const;
 };

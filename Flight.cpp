@@ -32,5 +32,5 @@ void Flight::move(const float delta_time) {
 
 void Flight::reactCollision(const Entity& other) {
     if (other.getType() == Type::Asteroid)
-        std::cout << "hit" << std::endl;
+        destructed = true;
 }
