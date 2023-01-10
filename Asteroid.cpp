@@ -6,7 +6,11 @@
 #include <cstdlib>
 #include <random>
 
-Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent) : Entity("resources/asteroid.png"), game_manager(game_manager) {
+Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
+    Entity("resources/asteroid.png"),
+    game_manager(game_manager),
+    counter(counter)
+{
     type = Type::Asteroid;
     auto generator = std::random_device();
 
@@ -31,7 +35,7 @@ Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent) : Entity("resour
             sprite.setPosition(1500, 800);
             random_rotation = std::uniform_real_distribution<float>(180, 270);
             break;
-    }
+}
 
     //auto random_position = std::uniform_real_distribution<float>(500,800);
     //auto random_rotation = std::uniform_real_distribution<float>(0,359);
@@ -53,7 +57,8 @@ void Asteroid::move(float delta_time) {
 void Asteroid::reactCollision(const Entity& other) {
     if (other.getType() == Type::Missile) {
         destructed = true;
-        for (auto i=0; i<3; i++)
-            game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, this));
+        if (counter <= 2)
+            for (auto i=0; i<3; i++)
+                game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, this, counter + 1));
     }
 }

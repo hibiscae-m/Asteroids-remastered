@@ -11,11 +11,12 @@
 
 class Asteroid : public Entity {
 public:
-    Asteroid(GameManager& game_manager, Asteroid* parent = nullptr);
+    explicit Asteroid(GameManager& game_manager, Asteroid* parent = nullptr, int counter = 1);
     void move(float delta_time) override;
     void reactCollision(const Entity& other) override;
     inline sf::Vector2f getScale() { return sprite.getScale(); };
 private:
+    int counter{};
     GameManager& game_manager;
 };
 
