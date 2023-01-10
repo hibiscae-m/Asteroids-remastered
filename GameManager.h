@@ -18,13 +18,16 @@ public:
     void update();
     void draw(sf::RenderWindow& window) const;
     void move(float delta_time) const;
-    void checkCollision() const;
 private:
     void add();
     void clear();
+    void checkCollision() const;
+    void checkPosition() const;
     void reposition() const;
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};
+    sf::Vector2i living_space;
+    const short OUT_OF_SCREEN_LIMIT{200};
     int space_width{};
     int space_length{};
 };

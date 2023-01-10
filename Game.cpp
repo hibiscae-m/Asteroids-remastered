@@ -4,8 +4,8 @@
 
 #include "Game.h"
 
-constexpr unsigned int WINDOW_WIDTH{1600};
-constexpr unsigned int WINDOW_LENGTH{900};
+constexpr unsigned int WINDOW_WIDTH{1900};
+constexpr unsigned int WINDOW_LENGTH{1200};
 constexpr std::string_view WINDOW_TITLE{"Game!"};
 
 Game::Game() :
@@ -35,7 +35,6 @@ void Game::processEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
     game_manager.move(temp_clock.restart().asSeconds());
-    game_manager.checkCollision();
 }
 
 void Game::render() {

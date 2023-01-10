@@ -25,6 +25,7 @@ public:
     void checkCollision(const Entity& other);
     inline Type getType() const { return type; };
     inline bool isDestructed() const { return destructed; };
+    inline void callDestruction() { destructed = true; };
 protected:
     virtual void reactCollision(const Entity& other);
     sf::Sprite sprite;
