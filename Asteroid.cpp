@@ -9,10 +9,33 @@
 Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent) : Entity("resources/asteroid.png"), game_manager(game_manager) {
     type = Type::Asteroid;
     auto generator = std::random_device();
-    auto random_position = std::uniform_real_distribution<float>(500,800);
-    auto random_rotation = std::uniform_real_distribution<float>(0,359);
+
+    enum SideMap { UpLeft, UpRight, BottomLeft, BottomRight };
+    auto random_side_map = std::uniform_int_distribution(0,3);
+    std::uniform_real_distribution<float> random_rotation;
+
+    switch (random_side_map(generator)) {
+        case SideMap::UpLeft:
+            sprite.setPosition(100, 100);
+            random_rotation = std::uniform_real_distribution<float>(0, 90);
+            break;
+        case SideMap::UpRight:
+            sprite.setPosition(1500, 100);
+            random_rotation = std::uniform_real_distribution<float>(90, 180);
+            break;
+        case SideMap::BottomLeft:
+            sprite.setPosition(100, 800);
+            random_rotation = std::uniform_real_distribution<float>(270, 360);
+            break;
+        case SideMap::BottomRight:
+            sprite.setPosition(1500, 800);
+            random_rotation = std::uniform_real_distribution<float>(180, 270);
+            break;
+    }
+
+    //auto random_position = std::uniform_real_distribution<float>(500,800);
+    //auto random_rotation = std::uniform_real_distribution<float>(0,359);
     sprite.rotate(random_rotation(generator));
-    sprite.setPosition(random_position(generator), random_position(generator));
     speed = 300.f;
     angle = sprite.getRotation();
     if (parent) {

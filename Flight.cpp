@@ -8,8 +8,8 @@
 #include <iostream>
 #include "Vector.h"
 
-Flight::Flight(GameManager& game_manager) : Entity("resources/flight.png"), game_manager(game_manager) {
-    sprite.setPosition(100.f, 100.f);
+Flight::Flight(GameManager& game_manager, float position_x, float position_y) : Entity("resources/flight.png"), game_manager(game_manager) {
+    sprite.setPosition(position_x, position_y);
     type = Type::Flight;
 }
 

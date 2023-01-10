@@ -14,7 +14,7 @@ Game::Game() :
 {}
 
 void Game::run() {
-    game_manager.addToBuffer(std::make_unique<Flight>(game_manager));
+    game_manager.addToBuffer(std::make_unique<Flight>(game_manager, static_cast<float>(WINDOW_WIDTH/2), static_cast<float>(WINDOW_LENGTH/2)));
     game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager));
     sf::Clock clock;
     sf::Time time_since_last_update = sf::Time::Zero;

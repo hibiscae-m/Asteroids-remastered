@@ -26,7 +26,7 @@ void GameManager::draw(sf::RenderWindow& window) const {
 void GameManager::move(const float delta_time) const {
     for (const auto& entity: entities)
         entity->move(delta_time);
-    reposition();
+    //reposition();
 }
 
 void GameManager::reposition() const {
