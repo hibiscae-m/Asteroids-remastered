@@ -4,8 +4,8 @@
 
 #include "Game.h"
 
-constexpr unsigned int WINDOW_WIDTH{1900};
-constexpr unsigned int WINDOW_LENGTH{1200};
+constexpr float WINDOW_WIDTH{1900};
+constexpr float WINDOW_LENGTH{1200};
 constexpr std::string_view WINDOW_TITLE{"Game!"};
 
 Game::Game() :

@@ -4,8 +4,9 @@
 
 #include "GameManager.h"
 
-GameManager::GameManager(int width, int length) : space_width(width), space_length(length), living_space(width, length)
-{}
+GameManager::GameManager(float width, float length) : living_space{width, length, 200}
+{
+}
 
 void GameManager::addToBuffer(std::unique_ptr<Entity> entity) {
     buffer.push_back(std::move(entity));
@@ -54,11 +55,8 @@ void GameManager::checkCollision() const {
 
 void GameManager::checkPosition() const {
     for (const auto& entity: entities)
-        if (entity->getPosition().x < static_cast<float>(-OUT_OF_SCREEN_LIMIT) ||
-            entity->getPosition().x > static_cast<float>(living_space.x + OUT_OF_SCREEN_LIMIT) ||
-            entity->getPosition().y < static_cast<float>(-OUT_OF_SCREEN_LIMIT) ||
-            entity->getPosition().y > static_cast<float>(living_space.y + OUT_OF_SCREEN_LIMIT))
-                entity->callDestruction();
+        if (*entity != living_space)
+            entity->callDestruction();
 }
 
 void GameManager::clear() {

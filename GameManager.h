@@ -9,11 +9,12 @@
 #include <memory>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "LivingSpace.h"
 
 class GameManager {
 public:
     GameManager() = delete;
-    GameManager(int width, int height);
+    GameManager(float width, float height);
     void addToBuffer(std::unique_ptr<Entity> entity);
     void update();
     void draw(sf::RenderWindow& window) const;
@@ -26,8 +27,7 @@ private:
     void reposition() const;
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};
-    sf::Vector2i living_space;
-    const short OUT_OF_SCREEN_LIMIT{200};
+    LivingSpace living_space;
     int space_width{};
     int space_length{};
 };
