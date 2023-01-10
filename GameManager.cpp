@@ -18,8 +18,9 @@ void GameManager::add() {
 }
 
 void GameManager::draw(sf::RenderWindow& window) const {
-    for (const auto& entity: entities)
-        entity->draw(window);
+    // Going in reverse order to draw Flight above the rest
+    for (auto i = entities.size(); i > 0u; i--)
+        entities[i-1]->draw(window);
 }
 
 void GameManager::move(const float delta_time) const {
