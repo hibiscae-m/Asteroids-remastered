@@ -32,7 +32,7 @@ void Flight::handlePlayerInputs(const float delta_time) {
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        game_manager.addToBuffer(std::make_unique<Asteroid>());
+        game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager));
 }
 
 void Flight::move(const float delta_time) {

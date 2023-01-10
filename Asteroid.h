@@ -7,12 +7,16 @@
 
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include "GameManager.h"
 
 class Asteroid : public Entity {
 public:
-    Asteroid();
+    Asteroid(GameManager& game_manager, Asteroid* parent = nullptr);
     void move(float delta_time) override;
     void reactCollision(const Entity& other) override;
+    inline sf::Vector2f getScale() { return sprite.getScale(); };
+private:
+    GameManager& game_manager;
 };
 
 
