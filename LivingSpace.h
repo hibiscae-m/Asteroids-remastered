@@ -11,14 +11,16 @@
 class LivingSpace {
 public:
     LivingSpace() = delete;
-    LivingSpace(unsigned int window_width, unsigned int window_length, float out_of_screen_limit = 0 );
+    explicit LivingSpace(sf::RenderWindow& window, short out_of_screen_limit = 0 );
+
+    enum MapCorner { UpLeft, UpRight, BottomLeft, BottomRight };
+
     bool operator==(const Entity& entity) const;
     bool operator!=(const Entity& entity) const;
-    enum MapCorner { UpLeft, UpRight, BottomLeft, BottomRight };
+
 private:
-    unsigned int window_width;
-    unsigned int window_length;
-    float out_of_screen_limit;
+    sf::RenderWindow& window;
+    short out_of_screen_limit;
 };
 
 

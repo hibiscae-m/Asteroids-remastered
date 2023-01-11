@@ -3,15 +3,27 @@
 //
 
 #include "GameManager.h"
+#include "Flight.h"
+#include "Asteroid.h"
 
 GameManager::GameManager(sf::RenderWindow& window) :
-    living_space{window.getSize().x, window.getSize().y, 200},
+    living_space{window, OOB_limit},
     window(window)
 {
 }
 
 void GameManager::addToBuffer(std::unique_ptr<Entity> entity) {
     buffer.push_back(std::move(entity));
+}
+
+void GameManager::addFlight() {
+    addToBuffer(std::make_unique<Flight>(*this,
+                                         static_cast<float>(window.getSize().x) / 2,
+                                         static_cast<float>(window.getSize().y) / 2 ));
+}
+
+void GameManager::addAsteroid() {
+    addToBuffer(std::make_unique<Asteroid>(*this));
 }
 
 void GameManager::add() {
@@ -31,21 +43,6 @@ void GameManager::move(const float delta_time) const {
         entity->move(delta_time);
     checkCollision();
     checkPosition();
-    //reposition();
-}
-
-void GameManager::reposition() const {
-    for (const auto& entity: entities) {
-        if (entity->getPosition().x > static_cast<float>(space_width))
-            entity->setPosition(0, entity->getPosition().y);
-        if (entity->getPosition().x < 0 )
-            entity->setPosition(static_cast<float>(space_width), entity->getPosition().y);
-
-        if (entity->getPosition().y > static_cast<float>(space_length))
-            entity->setPosition(entity->getPosition().x, 0);
-        if (entity->getPosition().y < 0)
-            entity->setPosition(entity->getPosition().x, static_cast<float>(space_length));
-    }
 }
 
 void GameManager::checkCollision() const {

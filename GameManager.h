@@ -5,32 +5,37 @@
 #ifndef ASTEROIDS_GAMEMANAGER_H
 #define ASTEROIDS_GAMEMANAGER_H
 
-#include "Entity.h"
-#include <memory>
-#include <vector>
 #include <SFML/Graphics.hpp>
+#include <vector>
+
+#include "Entity.h"
 #include "LivingSpace.h"
 
 class GameManager {
 public:
     GameManager() = delete;
     explicit GameManager(sf::RenderWindow& window);
+
+    void addFlight();
+    void addAsteroid();
     void addToBuffer(std::unique_ptr<Entity> entity);
-    void update();
-    void draw() const;
+
     void move(float delta_time) const;
+    void draw() const;
+    void update();
+
 private:
     void add();
     void clear();
     void checkCollision() const;
     void checkPosition() const;
-    void reposition() const;
+
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};
-    LivingSpace living_space;
+
     sf::RenderWindow& window;
-    int space_width{};
-    int space_length{};
+    const short OOB_limit = 200; // Define maximal distance (pixels) where Elements are living out of screen
+    LivingSpace living_space;
 };
 
 
