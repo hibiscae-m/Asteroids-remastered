@@ -14,6 +14,7 @@ public:
     LivingSpace(float window_width, float window_length, float out_of_screen_limit = 0 );
     bool operator==(const Entity& entity) const;
     bool operator!=(const Entity& entity) const;
+    enum MapCorner { UpLeft, UpRight, BottomLeft, BottomRight };
 private:
     float window_width;
     float window_length;

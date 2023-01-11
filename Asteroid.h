@@ -19,7 +19,6 @@ public:
 private:
     static sf::Vector2f getRandomPosition(int map_corner, std::random_device& generator);
     static float getRandomAngle(int map_corner, std::random_device& generator);
-    enum MapCorner { UpLeft, UpRight, BottomLeft, BottomRight };
     int counter{};
     GameManager& game_manager;
 };

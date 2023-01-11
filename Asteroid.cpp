@@ -42,13 +42,13 @@ void Asteroid::reactCollision(const Entity& other) {
 
 sf::Vector2f Asteroid::getRandomPosition(int map_corner, std::random_device& generator) {
     switch (map_corner) {
-        case MapCorner::UpLeft:
+        case LivingSpace::MapCorner::UpLeft:
             return {100, 100};
-        case MapCorner::UpRight:
+        case LivingSpace::MapCorner::UpRight:
             return {1500, 100};
-        case MapCorner::BottomLeft:
+        case LivingSpace::MapCorner::BottomLeft:
             return {100, 800};
-        case MapCorner::BottomRight:
+        case LivingSpace::MapCorner::BottomRight:
             return {1500, 800};
         default:
             throw std::invalid_argument("getRandomPosition");
@@ -58,20 +58,20 @@ sf::Vector2f Asteroid::getRandomPosition(int map_corner, std::random_device& gen
 float Asteroid::getRandomAngle(int map_corner, std::random_device& generator) {
     std::uniform_real_distribution<float> random_angle_distribution;
     switch (map_corner) {
-        case MapCorner::UpLeft:
+        case LivingSpace::MapCorner::UpLeft:
             random_angle_distribution = std::uniform_real_distribution<float>(0, 90);
             break;
-        case MapCorner::UpRight:
+        case LivingSpace::MapCorner::UpRight:
             random_angle_distribution = std::uniform_real_distribution<float>(90, 180);
             break;
-        case MapCorner::BottomLeft:
+        case LivingSpace::MapCorner::BottomLeft:
             random_angle_distribution = std::uniform_real_distribution<float>(270, 360);
             break;
-        case MapCorner::BottomRight:
+        case LivingSpace::MapCorner::BottomRight:
             random_angle_distribution = std::uniform_real_distribution<float>(180, 270);
             break;
         default:
-            throw std::invalid_argument("getRandomPosition");
+            throw std::invalid_argument("getRandomAngle");
     }
     return random_angle_distribution(generator);
 }
