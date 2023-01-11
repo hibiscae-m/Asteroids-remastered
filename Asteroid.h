@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "GameManager.h"
+#include <random>
 
 class Asteroid : public Entity {
 public:
@@ -16,6 +17,9 @@ public:
     void reactCollision(const Entity& other) override;
     inline sf::Vector2f getScale() { return sprite.getScale(); };
 private:
+    static sf::Vector2f getRandomPosition(int map_corner, std::random_device& generator);
+    static float getRandomAngle(int map_corner, std::random_device& generator);
+    enum MapCorner { UpLeft, UpRight, BottomLeft, BottomRight };
     int counter{};
     GameManager& game_manager;
 };

@@ -13,33 +13,10 @@ Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
 {
     type = Type::Asteroid;
     auto generator = std::random_device();
-
-    enum SideMap { UpLeft, UpRight, BottomLeft, BottomRight };
-    auto random_side_map = std::uniform_int_distribution(0,3);
-    std::uniform_real_distribution<float> random_rotation;
-
-    switch (random_side_map(generator)) {
-        case SideMap::UpLeft:
-            sprite.setPosition(100, 100);
-            random_rotation = std::uniform_real_distribution<float>(0, 90);
-            break;
-        case SideMap::UpRight:
-            sprite.setPosition(1500, 100);
-            random_rotation = std::uniform_real_distribution<float>(90, 180);
-            break;
-        case SideMap::BottomLeft:
-            sprite.setPosition(100, 800);
-            random_rotation = std::uniform_real_distribution<float>(270, 360);
-            break;
-        case SideMap::BottomRight:
-            sprite.setPosition(1500, 800);
-            random_rotation = std::uniform_real_distribution<float>(180, 270);
-            break;
-}
-
-    //auto random_position = std::uniform_real_distribution<float>(500,800);
-    //auto random_rotation = std::uniform_real_distribution<float>(0,359);
-    sprite.rotate(random_rotation(generator));
+    auto map_corner_distribution = std::uniform_int_distribution(0,3);
+    auto random_map_corner = map_corner_distribution(generator);
+    sprite.setPosition(getRandomPosition(random_map_corner, generator));
+    sprite.setRotation(getRandomAngle(random_map_corner, generator));
     speed = 300.f;
     angle = sprite.getRotation();
     if (parent) {
@@ -61,4 +38,40 @@ void Asteroid::reactCollision(const Entity& other) {
             for (auto i=0; i<3; i++)
                 game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, this, counter + 1));
     }
+}
+
+sf::Vector2f Asteroid::getRandomPosition(int map_corner, std::random_device& generator) {
+    switch (map_corner) {
+        case MapCorner::UpLeft:
+            return {100, 100};
+        case MapCorner::UpRight:
+            return {1500, 100};
+        case MapCorner::BottomLeft:
+            return {100, 800};
+        case MapCorner::BottomRight:
+            return {1500, 800};
+        default:
+            throw std::invalid_argument("getRandomPosition");
+    }
+}
+
+float Asteroid::getRandomAngle(int map_corner, std::random_device& generator) {
+    std::uniform_real_distribution<float> random_angle_distribution;
+    switch (map_corner) {
+        case MapCorner::UpLeft:
+            random_angle_distribution = std::uniform_real_distribution<float>(0, 90);
+            break;
+        case MapCorner::UpRight:
+            random_angle_distribution = std::uniform_real_distribution<float>(90, 180);
+            break;
+        case MapCorner::BottomLeft:
+            random_angle_distribution = std::uniform_real_distribution<float>(270, 360);
+            break;
+        case MapCorner::BottomRight:
+            random_angle_distribution = std::uniform_real_distribution<float>(180, 270);
+            break;
+        default:
+            throw std::invalid_argument("getRandomPosition");
+    }
+    return random_angle_distribution(generator);
 }
