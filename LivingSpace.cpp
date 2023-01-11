@@ -34,8 +34,7 @@ LivingSpace::LivingSpace(sf::RenderWindow& window, float out_of_screen_limit)
     };
 }
 
-sf::Vector2f LivingSpace::getRandomOOBPosition(int map_corner) const {
-    auto generator = std::random_device();
+sf::Vector2f LivingSpace::getRandomOOBPosition(int map_corner, std::random_device& generator) const {
     auto position_distribution = std::uniform_real_distribution<float>(-out_of_screen_limit, out_of_screen_limit);
     switch (map_corner) {
         case MapCorner::UpLeft:
@@ -59,8 +58,7 @@ sf::Vector2f LivingSpace::getRandomOOBPosition(int map_corner) const {
     }
 }
 
-float LivingSpace::getRandomAngle(int map_corner) const {
-    auto generator = std::random_device();
+float LivingSpace::getRandomAngle(int map_corner, std::random_device& generator) const {
     auto angle_distribution = std::uniform_real_distribution<float>(-20, 20);
     switch (map_corner) {
         case MapCorner::UpLeft:

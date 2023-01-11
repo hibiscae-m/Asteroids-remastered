@@ -28,8 +28,8 @@ void GameManager::addAsteroid() {
     auto generator = std::random_device();
     auto map_corner_distribution = std::uniform_int_distribution(0,7);
     auto random_map_corner = map_corner_distribution(generator);
-    auto random_position = living_space.getRandomOOBPosition(random_map_corner);
-    auto random_angle = living_space.getRandomAngle(random_map_corner);
+    auto random_position = living_space.getRandomOOBPosition(random_map_corner, generator);
+    auto random_angle = living_space.getRandomAngle(random_map_corner, generator);
     addToBuffer(std::make_unique<Asteroid>(*this, random_position, random_angle));
 }
 

@@ -7,14 +7,15 @@
 
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include <random>
 
 class LivingSpace {
 public:
     LivingSpace() = delete;
     explicit LivingSpace(sf::RenderWindow& window, float out_of_screen_limit = 0 );
 
-    sf::Vector2f getRandomOOBPosition(int map_corner) const;
-    float getRandomAngle(int map_corner) const;
+    sf::Vector2f getRandomOOBPosition(int map_corner, std::random_device& generator) const;
+    float getRandomAngle(int map_corner, std::random_device& generator) const;
 
     enum MapCorner { UpLeft, UpMiddle, UpRight,
                      MiddleLeft, MiddleRight,
