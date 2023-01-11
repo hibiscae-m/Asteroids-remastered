@@ -4,7 +4,9 @@
 
 #include "GameManager.h"
 
-GameManager::GameManager(float width, float length) : living_space{width, length, 200}
+GameManager::GameManager(sf::RenderWindow& window) :
+    living_space{window.getSize().x, window.getSize().y, 200},
+    window(window)
 {
 }
 
@@ -18,7 +20,7 @@ void GameManager::add() {
     buffer.clear();
 }
 
-void GameManager::draw(sf::RenderWindow& window) const {
+void GameManager::draw() const {
     // Going in reverse order to draw Flight above the rest
     for (auto i = entities.size(); i > 0u; i--)
         entities[i-1]->draw(window);

@@ -10,7 +10,7 @@ constexpr std::string_view WINDOW_TITLE{"Game!"};
 
 Game::Game() :
     window{sf::VideoMode(WINDOW_WIDTH, WINDOW_LENGTH), WINDOW_TITLE.data()},
-    game_manager(WINDOW_WIDTH, WINDOW_LENGTH)
+    game_manager(window)
 {}
 
 void Game::run() {
@@ -39,6 +39,6 @@ void Game::processEvents() {
 
 void Game::render() {
     window.clear();
-    game_manager.draw(window);
+    game_manager.draw();
     window.display();
 }

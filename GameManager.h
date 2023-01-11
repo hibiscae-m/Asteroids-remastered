@@ -14,10 +14,10 @@
 class GameManager {
 public:
     GameManager() = delete;
-    GameManager(float width, float height);
+    explicit GameManager(sf::RenderWindow& window);
     void addToBuffer(std::unique_ptr<Entity> entity);
     void update();
-    void draw(sf::RenderWindow& window) const;
+    void draw() const;
     void move(float delta_time) const;
 private:
     void add();
@@ -28,6 +28,7 @@ private:
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};
     LivingSpace living_space;
+    sf::RenderWindow& window;
     int space_width{};
     int space_length{};
 };
