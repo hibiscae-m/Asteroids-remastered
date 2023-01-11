@@ -34,7 +34,7 @@ private:
     std::vector<std::unique_ptr<Entity>> buffer{};
 
     sf::RenderWindow& window;
-    const short OOB_limit = 200; // Define maximal distance (pixels) where Elements are living out of screen
+    const float OOB_limit = 200; // Define maximal distance (pixels) where Elements are living out of screen
     LivingSpace living_space;
 };
 

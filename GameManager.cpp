@@ -26,10 +26,11 @@ void GameManager::addFlight() {
 
 void GameManager::addAsteroid() {
     auto generator = std::random_device();
-    auto position_distribution = std::uniform_real_distribution<float>(200,400);
-    auto position_x = position_distribution(generator);
-    auto position_y = position_distribution(generator);
-    addToBuffer(std::make_unique<Asteroid>(*this, position_x, position_y));
+    auto map_corner_distribution = std::uniform_int_distribution(0,7);
+    auto random_map_corner = map_corner_distribution(generator);
+    auto random_position = living_space.getRandomOOBPosition(random_map_corner);
+    auto random_angle = living_space.getRandomAngle(random_map_corner);
+    addToBuffer(std::make_unique<Asteroid>(*this, random_position, random_angle));
 }
 
 void GameManager::add() {

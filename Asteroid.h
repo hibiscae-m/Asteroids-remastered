@@ -13,14 +13,12 @@
 class Asteroid : public Entity {
 public:
     Asteroid() = delete;
-    Asteroid(GameManager& game_manager, float position_x, float position_y);
+    Asteroid(GameManager& game_manager, sf::Vector2f random_position, float random_angle);
     Asteroid(GameManager& game_manager, Asteroid* parent, int counter);
     void move(float delta_time) override;
     void reactCollision(const Entity& other) override;
     inline sf::Vector2f getScale() { return sprite.getScale(); };
 private:
-    static sf::Vector2f getRandomPosition(int map_corner, std::random_device& generator);
-    static float getRandomAngle(int map_corner, std::random_device& generator);
     int counter{};
     GameManager& game_manager;
 };
