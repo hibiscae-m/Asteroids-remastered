@@ -6,6 +6,8 @@
 #include "Flight.h"
 #include "Asteroid.h"
 
+#include <random>
+
 GameManager::GameManager(sf::RenderWindow& window) :
     living_space{window, OOB_limit},
     window(window)
@@ -23,7 +25,11 @@ void GameManager::addFlight() {
 }
 
 void GameManager::addAsteroid() {
-    addToBuffer(std::make_unique<Asteroid>(*this));
+    auto generator = std::random_device();
+    auto position_distribution = std::uniform_real_distribution<float>(200,400);
+    auto position_x = position_distribution(generator);
+    auto position_y = position_distribution(generator);
+    addToBuffer(std::make_unique<Asteroid>(*this, position_x, position_y));
 }
 
 void GameManager::add() {
