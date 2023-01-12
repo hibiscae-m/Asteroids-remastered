@@ -41,7 +41,7 @@ void Asteroid::reactCollision(const Entity& other) {
     if (other.getType() == Type::Missile) {
         game_manager.addExplosion(sprite.getPosition());
         destructed = true;
-        if (counter <= 2)
+        if (counter < 2)
             for (auto i=0; i<3; i++)
                 game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, this, counter + 1));
     }
