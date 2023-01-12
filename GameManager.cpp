@@ -61,6 +61,7 @@ void GameManager::checkCollision() const {
 
 void GameManager::checkPosition() const {
     for (const auto& entity: entities)
+        // if entity goes out of range of living space
         if (*entity != living_space)
             entity->callDestruction();
 }
