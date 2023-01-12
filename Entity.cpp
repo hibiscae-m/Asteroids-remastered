@@ -12,7 +12,7 @@ Entity::Entity(const std::string_view texture_location) {
         throw std::invalid_argument(texture_location.data());
     sprite.setTexture(texture);
     sprite.setOrigin(sprite.getGlobalBounds().width/2, sprite.getGlobalBounds().height/2);
-    hitbox.setRadius(sprite.getGlobalBounds().width/1.85);
+    hitbox.setRadius(sprite.getGlobalBounds().width/2);
     hitbox.setOrigin(hitbox.getGlobalBounds().width/2, hitbox.getGlobalBounds().height/2);
     hitbox.setPosition(sprite.getPosition());
     hitbox.setFillColor(sf::Color(255,0,0,100));
@@ -26,7 +26,7 @@ void Entity::move(const float delta_time) {
 
 void Entity::draw(sf::RenderWindow& window) const {
     window.draw(sprite);
-    window.draw(hitbox);
+    //window.draw(hitbox);
 }
 
 float Entity::getDistance(sf::Vector2f first, sf::Vector2f second) const {
