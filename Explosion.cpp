@@ -6,17 +6,13 @@
 
 Explosion::Explosion(sf::Vector2f position) : Entity("resources/explosion.png") {
     sprite.setPosition(position);
-    sprite.setScale(0.2, 0.2);
+    sprite.setScale(0, 0);
 }
 
 void Explosion::update() {
     lifetime += loop.restart();
-    if (lifetime > sf::milliseconds(100)) {
-        lifetime -= sf::milliseconds(100);
-        counter++;
-        sprite.setScale(sprite.getScale().x * 2, sprite.getScale().y * 2);
-    }
-    if (counter >= 3)
+    sprite.setScale(lifetime / time_before_dies, lifetime / time_before_dies);
+    if (lifetime >= time_before_dies)
         destructed = true;
 }
 

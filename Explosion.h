@@ -15,8 +15,8 @@ private:
     void update();
     void move(float delta_time) override;
     sf::Clock loop{};
+    sf::Time time_before_dies = sf::milliseconds(100);
     sf::Time lifetime = sf::Time::Zero;
-    short counter{};
 };
 
 
