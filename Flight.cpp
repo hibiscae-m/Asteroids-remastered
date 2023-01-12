@@ -40,6 +40,8 @@ void Flight::move(const float delta_time) {
 }
 
 void Flight::reactCollision(const Entity& other) {
-    if (other.getType() == Type::Asteroid)
+    if (other.getType() == Type::Asteroid) {
         destructed = true;
+        game_manager.addExplosion(sprite.getPosition());
+    }
 }
