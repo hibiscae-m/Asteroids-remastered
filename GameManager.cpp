@@ -5,6 +5,7 @@
 #include "GameManager.h"
 #include "Flight.h"
 #include "Asteroid.h"
+#include "Explosion.h"
 
 #include <random>
 
@@ -31,6 +32,10 @@ void GameManager::addAsteroid() {
     auto random_position = living_space.getRandomOOBPosition(random_map_corner, generator);
     auto random_angle = living_space.getRandomAngle(random_map_corner, generator);
     addToBuffer(std::make_unique<Asteroid>(*this, random_position, random_angle));
+}
+
+void GameManager::addExplosion(sf::Vector2f position) {
+    addToBuffer(std::make_unique<Explosion>(position));
 }
 
 void GameManager::add() {

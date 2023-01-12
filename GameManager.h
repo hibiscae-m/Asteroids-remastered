@@ -18,6 +18,7 @@ public:
 
     void addFlight();
     void addAsteroid();
+    void addExplosion(sf::Vector2f position);
     void addToBuffer(std::unique_ptr<Entity> entity);
 
     void move(float delta_time) const;
