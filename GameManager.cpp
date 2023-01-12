@@ -34,6 +34,14 @@ void GameManager::addAsteroid() {
     addToBuffer(std::make_unique<Asteroid>(*this, random_position, random_angle));
 }
 
+void GameManager::spawnAsteroids() {
+    time_since_last_asteroid += asteroid_spawn_clock.restart();
+    if (time_since_last_asteroid > sf::seconds(3)) {
+        time_since_last_asteroid -= sf::seconds(3);
+        addAsteroid();
+    }
+}
+
 void GameManager::addExplosion(sf::Vector2f position) {
     addToBuffer(std::make_unique<Explosion>(position));
 }
@@ -79,5 +87,6 @@ void GameManager::clear() {
 
 void GameManager::update() {
     clear();
+    spawnAsteroids();
     add();
 }

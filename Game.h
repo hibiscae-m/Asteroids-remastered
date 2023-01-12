@@ -22,7 +22,6 @@ private:
     sf::RenderWindow window;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
     sf::Clock loop{};
-    sf::Clock asteroid_spawn_clock{};
     GameManager game_manager;
 };
 
