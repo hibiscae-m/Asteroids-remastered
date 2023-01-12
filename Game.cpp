@@ -15,14 +15,19 @@ Game::Game() :
 
 void Game::run() {
     game_manager.addFlight();
-    game_manager.addAsteroid();
     sf::Clock clock;
     sf::Time time_since_last_update = sf::Time::Zero;
+    sf::Time time_since_last_asteroid = sf::Time::Zero;
     while (window.isOpen()) {
         time_since_last_update += clock.restart();
         if (time_since_last_update > TIME_PER_FRAME) {
             time_since_last_update -= TIME_PER_FRAME;
             processEvents();
+        }
+        time_since_last_asteroid += asteroid_spawn_clock.restart();
+        if (time_since_last_asteroid > sf::seconds(3)) {
+            time_since_last_asteroid -= sf::seconds(3);
+            game_manager.addAsteroid();
         }
         render();
         game_manager.update();
@@ -37,7 +42,7 @@ void Game::processEvents() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             game_manager.addAsteroid();
     }
-    game_manager.move(temp_clock.restart().asSeconds());
+    game_manager.move(loop.restart().asSeconds());
 }
 
 void Game::render() {
