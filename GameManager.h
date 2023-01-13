@@ -18,7 +18,7 @@ public:
     explicit GameManager(sf::RenderWindow& window, UI& ui);
 
     void addFlight();
-    void addAsteroid();
+    void addAsteroid(int number);
     void addExplosion(sf::Vector2f position);
     void addToBuffer(std::unique_ptr<Entity> entity);
 
@@ -32,6 +32,7 @@ private:
     void checkCollision() const;
     void checkPosition() const;
     void spawnAsteroids();
+    void updateLevel();
 
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};
@@ -43,6 +44,8 @@ private:
 
     sf::Clock asteroid_spawn_clock{};
     sf::Time time_since_last_asteroid = sf::Time::Zero;
+    sf::Time asteroid_spawn_timer = sf::seconds(3);
+    int amount_of_spawns = 1;
 };
 
 

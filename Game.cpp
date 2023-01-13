@@ -34,7 +34,7 @@ void Game::processEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            game_manager.addAsteroid();
+            game_manager.addAsteroid(1);
     }
     game_manager.move(loop.restart().asSeconds());
 }
