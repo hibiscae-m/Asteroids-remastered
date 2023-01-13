@@ -5,9 +5,10 @@
 #include "Asteroid.h"
 #include <random>
 
-Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, float random_angle) :
+Asteroid::Asteroid(GameManager& game_manager, UI& ui, sf::Vector2f random_position, float random_angle) :
     Entity("resources/asteroid.png"),
-    game_manager(game_manager)
+    game_manager(game_manager),
+    ui(ui)
 {
     type = Type::Asteroid;
     angle = random_angle;
@@ -16,9 +17,10 @@ Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, floa
     speed = 300.f;
 }
 
-Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
+Asteroid::Asteroid(GameManager& game_manager, UI& ui, Asteroid* parent, int counter) :
     Entity("resources/asteroid.png"),
     game_manager(game_manager),
+    ui(ui),
     counter(counter)
 {
     type = Type::Asteroid;
@@ -43,6 +45,6 @@ void Asteroid::reactCollision(const Entity& other) {
         destructed = true;
         if (counter < 2)
             for (auto i=0; i<3; i++)
-                game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, this, counter + 1));
+                game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, ui, this, counter + 1));
     }
 }

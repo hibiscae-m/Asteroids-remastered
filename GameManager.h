@@ -10,11 +10,12 @@
 
 #include "Entity.h"
 #include "LivingSpace.h"
+#include "UI.h"
 
 class GameManager {
 public:
     GameManager() = delete;
-    explicit GameManager(sf::RenderWindow& window);
+    explicit GameManager(sf::RenderWindow& window, UI& ui);
 
     void addFlight();
     void addAsteroid();
@@ -38,6 +39,7 @@ private:
     sf::RenderWindow& window;
     const float OOB_limit = 200; // Define maximal distance (pixels) where Elements are living out of screen
     LivingSpace living_space;
+    UI& ui;
 
     sf::Clock asteroid_spawn_clock{};
     sf::Time time_since_last_asteroid = sf::Time::Zero;

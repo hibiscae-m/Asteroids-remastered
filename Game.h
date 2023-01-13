@@ -10,6 +10,7 @@
 #include "Flight.h"
 #include "Asteroid.h"
 #include "GameManager.h"
+#include "UI.h"
 
 class Game {
 public:
@@ -23,6 +24,7 @@ private:
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
     sf::Clock loop{};
     GameManager game_manager;
+    UI ui;
 };
 
 

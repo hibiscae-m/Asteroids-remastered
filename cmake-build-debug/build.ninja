@@ -116,6 +116,13 @@ build CMakeFiles/Asteroids.dir/Explosion.cpp.o: CXX_COMPILER__Asteroids_Debug /U
   OBJECT_DIR = CMakeFiles/Asteroids.dir
   OBJECT_FILE_DIR = CMakeFiles/Asteroids.dir
 
+build CMakeFiles/Asteroids.dir/UI.cpp.o: CXX_COMPILER__Asteroids_Debug /Users/marius/CLionProjects/Asteroids/UI.cpp || cmake_object_order_depends_target_Asteroids
+  DEP_FILE = CMakeFiles/Asteroids.dir/UI.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -fcolor-diagnostics -F/Library/Frameworks/.  -std=gnu++20
+  INCLUDES = -iframework /Library/Frameworks
+  OBJECT_DIR = CMakeFiles/Asteroids.dir
+  OBJECT_FILE_DIR = CMakeFiles/Asteroids.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Asteroids
@@ -124,7 +131,7 @@ build CMakeFiles/Asteroids.dir/Explosion.cpp.o: CXX_COMPILER__Asteroids_Debug /U
 #############################################
 # Link the executable Asteroids
 
-build Asteroids: CXX_EXECUTABLE_LINKER__Asteroids_Debug CMakeFiles/Asteroids.dir/main.cpp.o CMakeFiles/Asteroids.dir/Game.cpp.o CMakeFiles/Asteroids.dir/Flight.cpp.o CMakeFiles/Asteroids.dir/Asteroid.cpp.o CMakeFiles/Asteroids.dir/Vector.cpp.o CMakeFiles/Asteroids.dir/Entity.cpp.o CMakeFiles/Asteroids.dir/GameManager.cpp.o CMakeFiles/Asteroids.dir/Missile.cpp.o CMakeFiles/Asteroids.dir/LivingSpace.cpp.o CMakeFiles/Asteroids.dir/Explosion.cpp.o | /Library/Frameworks/./sfml-graphics.framework/Versions/2.5.1/sfml-graphics /Library/Frameworks/./sfml-audio.framework/Versions/2.5.1/sfml-audio /Library/Frameworks/./sfml-window.framework/Versions/2.5.1/sfml-window /Library/Frameworks/./sfml-system.framework/Versions/2.5.1/sfml-system
+build Asteroids: CXX_EXECUTABLE_LINKER__Asteroids_Debug CMakeFiles/Asteroids.dir/main.cpp.o CMakeFiles/Asteroids.dir/Game.cpp.o CMakeFiles/Asteroids.dir/Flight.cpp.o CMakeFiles/Asteroids.dir/Asteroid.cpp.o CMakeFiles/Asteroids.dir/Vector.cpp.o CMakeFiles/Asteroids.dir/Entity.cpp.o CMakeFiles/Asteroids.dir/GameManager.cpp.o CMakeFiles/Asteroids.dir/Missile.cpp.o CMakeFiles/Asteroids.dir/LivingSpace.cpp.o CMakeFiles/Asteroids.dir/Explosion.cpp.o CMakeFiles/Asteroids.dir/UI.cpp.o | /Library/Frameworks/./sfml-graphics.framework/Versions/2.5.1/sfml-graphics /Library/Frameworks/./sfml-audio.framework/Versions/2.5.1/sfml-audio /Library/Frameworks/./sfml-window.framework/Versions/2.5.1/sfml-window /Library/Frameworks/./sfml-system.framework/Versions/2.5.1/sfml-system
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6
   LINK_LIBRARIES = -Wl,-rpath,/Library/Frameworks/.  /Library/Frameworks/./sfml-graphics.framework/Versions/2.5.1/sfml-graphics  /Library/Frameworks/./sfml-audio.framework/Versions/2.5.1/sfml-audio  /Library/Frameworks/./sfml-window.framework/Versions/2.5.1/sfml-window  /Library/Frameworks/./sfml-system.framework/Versions/2.5.1/sfml-system
   LINK_PATH = -F/Library/Frameworks/.

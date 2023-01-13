@@ -9,9 +9,10 @@
 
 #include <random>
 
-GameManager::GameManager(sf::RenderWindow& window) :
+GameManager::GameManager(sf::RenderWindow& window, UI& ui) :
     living_space{window, OOB_limit},
-    window(window)
+    window(window),
+    ui(ui)
 {
 }
 
@@ -31,7 +32,7 @@ void GameManager::addAsteroid() {
     auto random_map_corner = map_corner_distribution(generator);
     auto random_position = living_space.getRandomOOBPosition(random_map_corner, generator);
     auto random_angle = living_space.getRandomAngle(random_map_corner, generator);
-    addToBuffer(std::make_unique<Asteroid>(*this, random_position, random_angle));
+    addToBuffer(std::make_unique<Asteroid>(*this, ui, random_position, random_angle));
 }
 
 void GameManager::spawnAsteroids() {
