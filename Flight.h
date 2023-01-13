@@ -13,9 +13,10 @@
 class Flight : public Entity {
 public:
     Flight(GameManager& game_manager, float position_x, float position_y);
-    void handlePlayerInputs(float delta_time);
     void move(float delta_time) override;
 private:
+    void handlePlayerInputs(float delta_time);
+    void shoot();
     void reactCollision(const Entity& other) override;
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};
