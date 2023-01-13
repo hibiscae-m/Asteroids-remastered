@@ -26,24 +26,23 @@ void GameManager::addFlight() {
                                          static_cast<float>(window.getSize().y) / 2 ));
 }
 
-void GameManager::addAsteroid(int number) {
+void GameManager::addAsteroid() {
     auto generator = std::random_device();
     auto map_corner_distribution = std::uniform_int_distribution(0,7);
     auto random_map_corner = map_corner_distribution(generator);
     auto random_position = living_space.getRandomOOBPosition(random_map_corner, generator);
     auto random_angle = living_space.getRandomAngle(random_map_corner, generator);
 
-    for (auto i = 0 ; i < 1 ; i++)
-        addToBuffer(std::make_unique<Asteroid>(*this, ui, random_position, random_angle));
+    addToBuffer(std::make_unique<Asteroid>(*this, ui, random_position, random_angle));
 }
 
 void GameManager::spawnAsteroids() {
     time_since_last_asteroid += asteroid_spawn_clock.restart();
     if (time_since_last_asteroid > asteroid_spawn_timer) {
         time_since_last_asteroid -= asteroid_spawn_timer;
-        addAsteroid(amount_of_spawns);
+        addAsteroid();
         if (ui.getScore() > 1000)
-            addAsteroid(amount_of_spawns);
+            addAsteroid();
     }
 }
 

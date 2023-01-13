@@ -18,7 +18,7 @@ public:
     explicit GameManager(sf::RenderWindow& window, UI& ui);
 
     void addFlight();
-    void addAsteroid(int number);
+    void addAsteroid();
     void addExplosion(sf::Vector2f position);
     void addToBuffer(std::unique_ptr<Entity> entity);
 
