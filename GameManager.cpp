@@ -40,6 +40,8 @@ void GameManager::spawnAsteroids() {
     if (time_since_last_asteroid > sf::seconds(3)) {
         time_since_last_asteroid -= sf::seconds(3);
         addAsteroid();
+        if (ui.getScore() > 1000)
+            addAsteroid();
     }
 }
 

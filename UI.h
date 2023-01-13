@@ -11,6 +11,7 @@ class UI {
 public:
     UI();
     void addScore(int value);
+    inline int getScore() { return score; };
     void draw(sf::RenderWindow& window);
 private:
     void refresh();
