@@ -41,6 +41,7 @@ void Asteroid::move(float delta_time) {
 
 void Asteroid::reactCollision(const Entity& other) {
     if (other.getType() == Type::Missile) {
+        ui.addScore(10);
         game_manager.addExplosion(sprite.getPosition());
         destructed = true;
         if (counter < 2)

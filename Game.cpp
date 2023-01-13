@@ -42,5 +42,6 @@ void Game::processEvents() {
 void Game::render() {
     window.clear();
     game_manager.draw();
+    ui.draw(window);
     window.display();
 }
