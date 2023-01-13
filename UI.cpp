@@ -14,15 +14,10 @@ UI::UI() {
     text_score.setPosition(30, 30);
 }
 
-void UI::addScore(int value) {
-    score += value;
+void UI::setScore(int score) {
+    text_score.setString("Score: " + std::to_string(score));
 }
 
 void UI::draw(sf::RenderWindow& window) {
-    refresh();
     window.draw(text_score);
-}
-
-void UI::refresh() {
-    text_score.setString("Score: " + std::to_string(score));
 }

@@ -33,7 +33,7 @@ void GameManager::addAsteroid() {
     auto random_position = living_space.getRandomOOBPosition(random_map_corner, generator);
     auto random_angle = living_space.getRandomAngle(random_map_corner, generator);
 
-    addToBuffer(std::make_unique<Asteroid>(*this, ui, random_position, random_angle));
+    addToBuffer(std::make_unique<Asteroid>(*this, random_position, random_angle));
 }
 
 void GameManager::spawnAsteroids() {
@@ -41,7 +41,7 @@ void GameManager::spawnAsteroids() {
     if (time_since_last_asteroid > asteroid_spawn_timer) {
         time_since_last_asteroid -= asteroid_spawn_timer;
         addAsteroid();
-        if (ui.getScore() > 1000)
+        if (score > 1000)
             addAsteroid();
     }
 }
@@ -89,16 +89,13 @@ void GameManager::clear() {
             entities.erase(entities.begin()+i);
 }
 
-void GameManager::updateLevel() {
-    if (ui.getScore() > 1000)
-        amount_of_spawns = 2;
-    if (ui.getScore() > 2000)
-        asteroid_spawn_timer = sf::seconds(0.5);
-}
-
 void GameManager::update() {
     clear();
-    updateLevel();
     spawnAsteroids();
     add();
+    ui.setScore(score);
+}
+
+void GameManager::addScore(int value) {
+    score += value;
 }

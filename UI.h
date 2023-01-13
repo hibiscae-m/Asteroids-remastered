@@ -10,13 +10,9 @@
 class UI {
 public:
     UI();
-    void addScore(int value);
-    inline int getScore() { return score; };
     void draw(sf::RenderWindow& window);
+    void setScore(int score);
 private:
-    void refresh();
-
-    int score{};
     sf::Font font;
     sf::Text text_score;
 };

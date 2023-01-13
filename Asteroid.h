@@ -14,15 +14,14 @@
 class Asteroid : public Entity {
 public:
     Asteroid() = delete;
-    Asteroid(GameManager& game_manager, UI& ui, sf::Vector2f random_position, float random_angle);
-    Asteroid(GameManager& game_manager, UI& ui, Asteroid* parent, int counter);
+    Asteroid(GameManager& game_manager, sf::Vector2f random_position, float random_angle);
+    Asteroid(GameManager& game_manager, Asteroid* parent, int counter);
     void move(float delta_time) override;
     void reactCollision(const Entity& other) override;
     inline sf::Vector2f getScale() { return sprite.getScale(); };
 private:
     int counter{};
     GameManager& game_manager;
-    UI& ui;
 };
 
 

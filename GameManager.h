@@ -22,6 +22,8 @@ public:
     void addExplosion(sf::Vector2f position);
     void addToBuffer(std::unique_ptr<Entity> entity);
 
+    void addScore(int value);
+
     void move(float delta_time) const;
     void draw() const;
     void update();
@@ -32,7 +34,6 @@ private:
     void checkCollision() const;
     void checkPosition() const;
     void spawnAsteroids();
-    void updateLevel();
 
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};
@@ -46,6 +47,8 @@ private:
     sf::Time time_since_last_asteroid = sf::Time::Zero;
     sf::Time asteroid_spawn_timer = sf::seconds(3);
     int amount_of_spawns = 1;
+
+    int score{};
 };
 
 
