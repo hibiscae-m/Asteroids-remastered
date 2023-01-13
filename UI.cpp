@@ -10,7 +10,8 @@ UI::UI() {
         throw std::runtime_error("Unable to access font");
     }
     text_score.setFont(font);
-    text_score.setPosition(0, 30);
+    text_score.setScale(2, 2);
+    text_score.setPosition(30, 30);
 }
 
 void UI::addScore(int value) {
