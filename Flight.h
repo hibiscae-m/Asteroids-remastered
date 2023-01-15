@@ -6,7 +6,6 @@
 #define ASTEROIDS_FLIGHT_H
 
 #include <SFML/Graphics.hpp>
-#include <string_view>
 #include "Entity.h"
 #include "GameManager.h"
 
@@ -18,11 +17,15 @@ private:
     void handlePlayerInputs(float delta_time);
     void shoot();
     void reactCollision(const Entity& other) override;
+
     const float ACCELERATION{70.f};
     const float ANGLE_SPEED{200.f};
     const float FRICTION{3.f};
+
     sf::Clock clock;
     sf::Time time_since_last_shoot = sf::Time::Zero;
+    sf::Time shoot_cooldown = sf::milliseconds(300);
+
     GameManager& game_manager;
 };
 

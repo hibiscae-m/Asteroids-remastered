@@ -3,10 +3,7 @@
 //
 
 #include "Flight.h"
-#include "Asteroid.h"
 #include "Missile.h"
-#include <iostream>
-#include "Vector.h"
 
 Flight::Flight(GameManager& game_manager, float position_x, float position_y) : Entity("resources/flight.png"), game_manager(game_manager) {
     sprite.setPosition(position_x, position_y);
@@ -34,7 +31,7 @@ void Flight::move(const float delta_time) {
 
 void Flight::shoot() {
     time_since_last_shoot += clock.restart();
-    if (time_since_last_shoot > sf::milliseconds(300)) {
+    if (time_since_last_shoot > shoot_cooldown) {
         time_since_last_shoot = sf::Time::Zero;
         game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation()));
     }
