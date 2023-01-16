@@ -9,12 +9,19 @@
 
 class UI {
 public:
-    UI();
-    void draw(sf::RenderWindow& window);
+    explicit UI(sf::RenderWindow& window);
+    void draw();
     void setScore(int score);
+    void setHealth(short health);
 private:
+    sf::RenderWindow& window;
+
     sf::Font font;
     sf::Text text_score;
+
+    sf::Texture texture;
+    sf::Sprite sprite;
+    int sprite_width_size{};
 };
 
 

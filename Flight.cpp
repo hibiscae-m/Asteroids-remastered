@@ -46,6 +46,7 @@ void Flight::reactCollision(const Entity& other) {
             blink_clock.restart();
             damaged = true;
             health--;
+            game_manager.setUIHealth(health);
         }
     }
 }

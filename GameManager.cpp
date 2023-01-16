@@ -93,9 +93,13 @@ void GameManager::update() {
     clear();
     spawnAsteroids();
     add();
-    ui.setScore(score);
 }
 
 void GameManager::addScore(int value) {
     score += value;
+    ui.setScore(score);
+}
+
+void GameManager::setUIHealth(short health) {
+    ui.setHealth(health);
 }

@@ -23,6 +23,7 @@ public:
     void addToBuffer(std::unique_ptr<Entity> entity);
 
     void addScore(int value);
+    void setUIHealth(short health);
 
     void move(float delta_time) const;
     void draw() const;
