@@ -22,7 +22,9 @@ void Flight::handlePlayerInputs(const float delta_time) {
 }
 
 void Flight::move(const float delta_time) {
-    shoot();
+    checkHealth();
+    if (!damaged)
+        shoot();
     handlePlayerInputs(delta_time);
     speed -= speed * FRICTION * delta_time;
     angle = sprite.getRotation();
@@ -30,7 +32,7 @@ void Flight::move(const float delta_time) {
 }
 
 void Flight::shoot() {
-    time_since_last_shoot += clock.restart();
+    time_since_last_shoot += shoot_clock.restart();
     if (time_since_last_shoot > shoot_cooldown) {
         time_since_last_shoot = sf::Time::Zero;
         game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation()));
@@ -39,7 +41,32 @@ void Flight::shoot() {
 
 void Flight::reactCollision(const Entity& other) {
     if (other.getType() == Type::Asteroid) {
+        if (!damaged) {
+            damage_clock.restart();
+            blink_clock.restart();
+            damaged = true;
+            health--;
+        }
+    }
+}
+
+void Flight::checkHealth() {
+    if (health <= 0) {
         destructed = true;
         game_manager.addExplosion(sprite.getPosition());
+    }
+    else {
+        if (damaged) {
+            if (damage_clock.getElapsedTime() < damage_invincibility) {
+                if (blink_clock.getElapsedTime() > blink_duration) {
+                    isVisible = !isVisible;
+                    blink_clock.restart();
+                }
+            }
+            else {
+                damaged = false;
+                isVisible = true;
+            }
+        }
     }
 }

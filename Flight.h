@@ -17,12 +17,20 @@ private:
     void handlePlayerInputs(float delta_time);
     void shoot();
     void reactCollision(const Entity& other) override;
+    void checkHealth();
 
-    const float ACCELERATION{70.f};
-    const float ANGLE_SPEED{200.f};
-    const float FRICTION{3.f};
+    const float ACCELERATION = 70.f;
+    const float ANGLE_SPEED = 200.f;
+    const float FRICTION= 3.f;
+    short health = 3;
 
-    sf::Clock clock;
+    bool damaged = false;
+    sf::Clock damage_clock;
+    sf::Time damage_invincibility = sf::seconds(2);
+    sf::Clock blink_clock;
+    sf::Time blink_duration = sf::milliseconds(100);
+
+    sf::Clock shoot_clock;
     sf::Time time_since_last_shoot = sf::Time::Zero;
     sf::Time shoot_cooldown = sf::milliseconds(300);
 
