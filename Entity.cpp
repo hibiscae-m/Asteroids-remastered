@@ -25,7 +25,8 @@ void Entity::move(const float delta_time) {
 }
 
 void Entity::draw(sf::RenderWindow& window) const {
-    window.draw(sprite);
+    if (isVisible)
+        window.draw(sprite);
     //window.draw(hitbox);
 }
 

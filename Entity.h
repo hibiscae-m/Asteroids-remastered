@@ -28,6 +28,7 @@ public:
     inline void callDestruction() { destructed = true; };
 protected:
     virtual void reactCollision(const Entity& other);
+    bool isVisible = true;
     sf::Sprite sprite;
     sf::Texture texture;
     sf::CircleShape hitbox;
