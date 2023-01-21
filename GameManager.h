@@ -47,7 +47,8 @@ private:
     sf::Clock asteroid_spawn_clock{};
     sf::Time time_since_last_asteroid = sf::Time::Zero;
     sf::Time asteroid_spawn_timer = sf::seconds(3);
-    int amount_of_spawns = 1;
+    float asteroid_min_speed = 300;
+    float asteroid_max_speed = 400;
 
     int score{};
 };

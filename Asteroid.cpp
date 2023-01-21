@@ -5,7 +5,7 @@
 #include "Asteroid.h"
 #include <random>
 
-Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, float random_angle) :
+Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, float random_angle, float random_speed) :
     Entity("resources/asteroid.png"),
     game_manager(game_manager)
 {
@@ -13,7 +13,7 @@ Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, floa
     angle = random_angle;
     sprite.setPosition(random_position);
     sprite.setRotation(angle);
-    speed = 300.f;
+    speed = random_speed;
 }
 
 Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
@@ -22,7 +22,7 @@ Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
     counter(counter)
 {
     type = Type::Asteroid;
-    speed = 300.f;
+    speed = parent->speed;
     auto generator = std::random_device();
     auto angle_distribution = std::uniform_real_distribution<float>(1, 360);
     angle = angle_distribution(generator);
@@ -33,7 +33,7 @@ Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
 }
 
 void Asteroid::move(float delta_time) {
-    sprite.rotate(1.f);
+    sprite.rotate(rotation_speed);
     Entity::move(delta_time);
 }
 
