@@ -14,6 +14,7 @@ Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, floa
     sprite.setPosition(random_position);
     sprite.setRotation(angle);
     speed = random_speed;
+    score_value = static_cast<int>(10 / sprite.getScale().x);
 }
 
 Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
@@ -30,6 +31,7 @@ Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
     sprite.setPosition(parent->getPosition());
     sprite.setScale(parent->getScale() * child_size_ratio);
     hitbox.setScale(sprite.getScale());
+    score_value = static_cast<int>(10 / sprite.getScale().x);
 }
 
 void Asteroid::move(float delta_time) {
@@ -39,7 +41,7 @@ void Asteroid::move(float delta_time) {
 
 void Asteroid::reactCollision(const Entity& other) {
     if (other.getType() == Type::Missile) {
-        game_manager.addScore(static_cast<int>(10 / sprite.getScale().x));
+        game_manager.addScore(score_value);
         game_manager.addExplosion(sprite.getPosition());
         destructed = true;
         if (counter < counter_max)
