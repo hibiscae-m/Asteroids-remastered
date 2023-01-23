@@ -34,6 +34,7 @@ private:
     void clear();
     void checkCollision() const;
     void checkPosition() const;
+    void checkLevel();
     void spawnAsteroids();
 
     std::vector<std::unique_ptr<Entity>> entities{};
@@ -50,7 +51,9 @@ private:
     float asteroid_min_speed = 300;
     float asteroid_max_speed = 400;
 
-    int score{};
+    int score = 0;
+    int score_level_bearing = 500; //level will up every X points
+    int level = 1;
 };
 
 

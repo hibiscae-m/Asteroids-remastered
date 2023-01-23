@@ -26,6 +26,9 @@ private:
     int counter{};
     GameManager& game_manager;
     float rotation_speed = 1.f;
+    short counter_max = 2;
+    short amount_of_children = 3;
+    float child_size_ratio = 0.7;
 };
 
 

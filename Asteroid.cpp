@@ -28,7 +28,7 @@ Asteroid::Asteroid(GameManager& game_manager, Asteroid* parent, int counter) :
     angle = angle_distribution(generator);
     sprite.setRotation(angle);
     sprite.setPosition(parent->getPosition());
-    sprite.setScale(parent->getScale() / 1.3f);
+    sprite.setScale(parent->getScale() * child_size_ratio);
     hitbox.setScale(sprite.getScale());
 }
 
@@ -42,8 +42,8 @@ void Asteroid::reactCollision(const Entity& other) {
         game_manager.addScore(static_cast<int>(10 / sprite.getScale().x));
         game_manager.addExplosion(sprite.getPosition());
         destructed = true;
-        if (counter < 2)
-            for (auto i=0; i<3; i++)
+        if (counter < counter_max)
+            for (auto i=0; i < amount_of_children; i++)
                 game_manager.addToBuffer(std::make_unique<Asteroid>(game_manager, this, counter + 1));
     }
 }

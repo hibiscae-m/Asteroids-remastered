@@ -8,6 +8,7 @@
 #include "Explosion.h"
 
 #include <random>
+#include <cmath>
 
 GameManager::GameManager(sf::RenderWindow& window, UI& ui) :
     living_space{window, OOB_limit},
@@ -42,8 +43,8 @@ void GameManager::spawnAsteroids() {
     time_since_last_asteroid += asteroid_spawn_clock.restart();
     if (time_since_last_asteroid > asteroid_spawn_timer) {
         time_since_last_asteroid -= asteroid_spawn_timer;
-        addAsteroid();
-        if (score > 1000)
+        // additional asteroid every 5 levels
+        for (auto i = 0; i <= static_cast<int>(trunc(static_cast<float>(level) / 5)); i++)
             addAsteroid();
     }
 }
@@ -93,6 +94,7 @@ void GameManager::clear() {
 
 void GameManager::update() {
     clear();
+    checkLevel();
     spawnAsteroids();
     add();
 }
@@ -104,4 +106,12 @@ void GameManager::addScore(int value) {
 
 void GameManager::setUIHealth(short health) {
     ui.setHealth(health);
+}
+
+void GameManager::checkLevel() {
+    auto checking_level = static_cast<int>(trunc((score / score_level_bearing) + 1));
+    if (level != checking_level) {
+        level = checking_level;
+        asteroid_spawn_timer = sf::seconds(1 / static_cast<float>(level) + 2);
+    }
 }
