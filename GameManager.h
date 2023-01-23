@@ -22,7 +22,7 @@ public:
     void addExplosion(sf::Vector2f position);
     void addToBuffer(std::unique_ptr<Entity> entity);
 
-    void addScore(int value);
+    void addScore(int value, sf::Vector2f position);
     void setUIHealth(short health);
 
     void move(float delta_time) const;

@@ -6,6 +6,7 @@
 #include "Flight.h"
 #include "Asteroid.h"
 #include "Explosion.h"
+#include "TextScore.h"
 
 #include <random>
 #include <cmath>
@@ -99,9 +100,10 @@ void GameManager::update() {
     add();
 }
 
-void GameManager::addScore(int value) {
+void GameManager::addScore(int value, sf::Vector2f position) {
     score += value;
     ui.setScore(score);
+    addToBuffer(std::make_unique<TextScore>(value, position));
 }
 
 void GameManager::setUIHealth(short health) {

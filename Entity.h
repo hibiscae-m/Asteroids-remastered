@@ -17,8 +17,9 @@ enum class Type {
 
 class Entity {
 public:
+    Entity() = default;
     explicit Entity(std::string_view texture_location);
-    void draw(sf::RenderWindow& window) const;
+    virtual void draw(sf::RenderWindow& window) const;
     virtual void move(float delta_time);
     inline void setPosition(float x, float y) { sprite.setPosition(x, y); };
     inline sf::Vector2f getPosition() const { return sprite.getPosition(); }
