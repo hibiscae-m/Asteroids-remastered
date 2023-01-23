@@ -12,12 +12,14 @@ public:
     explicit UI(sf::RenderWindow& window);
     void draw();
     void setScore(int score);
+    void setLevel(int level);
     void setHealth(short health);
 private:
     sf::RenderWindow& window;
 
     sf::Font font;
     sf::Text text_score;
+    sf::Text text_level;
 
     sf::Texture texture;
     sf::Sprite sprite;

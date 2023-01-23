@@ -112,6 +112,7 @@ void GameManager::checkLevel() {
     auto checking_level = static_cast<int>(trunc((score / score_level_bearing) + 1));
     if (level != checking_level) {
         level = checking_level;
+        ui.setLevel(level);
         asteroid_spawn_timer = sf::seconds(1 / static_cast<float>(level) + 2);
     }
 }
