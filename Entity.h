@@ -12,6 +12,7 @@ enum class Type {
     Flight,
     Asteroid,
     Missile,
+    Heart,
     Other
 };
 

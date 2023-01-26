@@ -7,6 +7,7 @@
 #include "Asteroid.h"
 #include "Explosion.h"
 #include "TextScore.h"
+#include "Heart.h"
 
 #include <random>
 #include <cmath>
@@ -52,6 +53,10 @@ void GameManager::spawnAsteroids() {
 
 void GameManager::addExplosion(sf::Vector2f position) {
     addToBuffer(std::make_unique<Explosion>(position));
+}
+
+void GameManager::addHeart(sf::Vector2f position) {
+    addToBuffer(std::make_unique<Heart>(position));
 }
 
 void GameManager::add() {

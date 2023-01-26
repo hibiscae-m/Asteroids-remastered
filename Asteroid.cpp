@@ -43,6 +43,7 @@ void Asteroid::reactCollision(const Entity& other) {
     if (other.getType() == Type::Missile) {
         game_manager.addScore(score_value, sprite.getPosition());
         game_manager.addExplosion(sprite.getPosition());
+        game_manager.addHeart(sprite.getPosition());
         destructed = true;
         if (counter < counter_max)
             for (auto i=0; i < amount_of_children; i++)
