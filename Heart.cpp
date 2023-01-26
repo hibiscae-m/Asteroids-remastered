@@ -4,7 +4,10 @@
 
 #include "Heart.h"
 
-Heart::Heart(sf::Vector2f position) : Entity("resources/heart.png") {
+Heart::Heart(GameManager& game_manager, sf::Vector2f position)
+  : Entity("resources/heart.png"),
+    game_manager(game_manager)
+{
     type = Type::Heart;
     sprite.setScale(0.3, 0.3);
     sprite.setPosition(position);
@@ -15,6 +18,7 @@ Heart::Heart(sf::Vector2f position) : Entity("resources/heart.png") {
 
 void Heart::reactCollision(const Entity& other) {
     if (other.getType() == Type::Flight) {
+        game_manager.addScore(100, sprite.getPosition());
         destructed = true;
     }
 }

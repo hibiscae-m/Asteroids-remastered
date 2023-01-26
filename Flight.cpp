@@ -49,6 +49,12 @@ void Flight::reactCollision(const Entity& other) {
             game_manager.setUIHealth(health);
         }
     }
+    else if (other.getType() == Type::Heart) {
+        if (health < 3) {
+            health++;
+            game_manager.setUIHealth(health);
+        }
+    }
 }
 
 void Flight::checkHealth() {

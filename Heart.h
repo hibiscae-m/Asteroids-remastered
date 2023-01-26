@@ -6,16 +6,17 @@
 #define ASTEROIDS_HEART_H
 
 #include "Entity.h"
+#include "GameManager.h"
 #include <SFML/Graphics.hpp>
 
 
 class Heart : public Entity {
 public:
     Heart() = delete;
-    Heart(sf::Vector2f position);
+    Heart(GameManager& game_manager, sf::Vector2f position);
 private:
-protected:
     void reactCollision(const Entity& other) override;
+    GameManager& game_manager;
 };
 
 
