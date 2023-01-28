@@ -17,6 +17,13 @@ public:
 private:
     void reactCollision(const Entity& other) override;
     GameManager& game_manager;
+    sf::Clock clock;
+public:
+    void move(float delta_time) override;
+
+private:
+    sf::Time life_time = sf::seconds(5);
+    sf::Time time_after_spawn = sf::Time::Zero;
 };
 
 

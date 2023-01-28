@@ -22,3 +22,14 @@ void Heart::reactCollision(const Entity& other) {
         destructed = true;
     }
 }
+
+void Heart::move(float delta_time) {
+    time_after_spawn += clock.restart();
+    auto alpha_sprite = static_cast<int>(255 - ((255 / life_time.asSeconds()) * time_after_spawn.asSeconds()));
+    sprite.setColor(sf::Color(sprite.getColor().r,
+                              sprite.getColor().g,
+                              sprite.getColor().b,
+                              alpha_sprite));
+    if (time_after_spawn >= life_time)
+        destructed = true;
+}
