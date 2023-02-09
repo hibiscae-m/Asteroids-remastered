@@ -6,11 +6,10 @@
 #include "Vector.h"
 #include <iostream>
 #include <cmath>
+#include "ResourcesManager.h"
 
 Entity::Entity(const std::string_view texture_location) {
-    if (!texture.loadFromFile(texture_location.data()))
-        throw std::invalid_argument(texture_location.data());
-    sprite.setTexture(texture);
+    sprite.setTexture(ResourcesManager::getResource(texture_location));
     sprite.setOrigin(sprite.getGlobalBounds().width/2, sprite.getGlobalBounds().height/2);
     hitbox.setRadius(sprite.getGlobalBounds().width/2);
     hitbox.setOrigin(hitbox.getGlobalBounds().width/2, hitbox.getGlobalBounds().height/2);
