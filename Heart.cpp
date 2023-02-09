@@ -5,31 +5,7 @@
 #include "Heart.h"
 
 Heart::Heart(GameManager& game_manager, sf::Vector2f position)
-  : Entity("resources/heart.png"),
-    game_manager(game_manager)
+  : Bonus(game_manager, position, "resources/heart.png")
 {
     type = Type::Heart;
-    sprite.setScale(0.3, 0.3);
-    sprite.setPosition(position);
-    hitbox.setRadius(static_cast<float>(hitbox.getRadius() * 0.3));
-    hitbox.setOrigin(hitbox.getGlobalBounds().width/2, hitbox.getGlobalBounds().height/2);
-    hitbox.setPosition(sprite.getPosition());
-}
-
-void Heart::reactCollision(const Entity& other) {
-    if (other.getType() == Type::Flight) {
-        game_manager.addScore(100, sprite.getPosition());
-        destructed = true;
-    }
-}
-
-void Heart::move(float delta_time) {
-    time_after_spawn += clock.restart();
-    auto alpha_sprite = static_cast<int>(255 - ((255 / life_time.asSeconds()) * time_after_spawn.asSeconds()));
-    sprite.setColor(sf::Color(sprite.getColor().r,
-                              sprite.getColor().g,
-                              sprite.getColor().b,
-                              alpha_sprite));
-    if (time_after_spawn >= life_time)
-        destructed = true;
 }
