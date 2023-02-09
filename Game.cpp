@@ -23,9 +23,9 @@ void Game::run() {
         if (time_since_last_update > TIME_PER_FRAME) {
             time_since_last_update -= TIME_PER_FRAME;
             processEvents();
+            render();
+            game_manager.update();
         }
-        render();
-        game_manager.update();
     }
 }
 
