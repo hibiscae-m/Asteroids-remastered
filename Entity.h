@@ -13,6 +13,7 @@ enum class Type {
     Asteroid,
     Missile,
     Heart,
+    ShootSpeed,
     Other
 };
 

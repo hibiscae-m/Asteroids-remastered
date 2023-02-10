@@ -22,6 +22,7 @@ public:
     void move(float delta_time) override;
     void reactCollision(const Entity& other) override;
 private:
+    enum bonus_type { Heart, SpeedBoost };
     inline sf::Vector2f getScale() { return sprite.getScale(); };
     int counter{};
     GameManager& game_manager;

@@ -18,6 +18,8 @@ private:
     void shoot();
     void reactCollision(const Entity& other) override;
     void checkHealth();
+    void checkBonus();
+    void update();
 
     const float ACCELERATION = 70.f;
     const float ANGLE_SPEED = 200.f;
@@ -29,6 +31,10 @@ private:
     sf::Time damage_invincibility = sf::seconds(2);
     sf::Clock blink_clock;
     sf::Time blink_duration = sf::milliseconds(100);
+
+    bool shootspeed_boosted = false;
+    sf::Clock shootspeed_bonus_clock;
+    sf::Time shootspeed_bonus_duration = sf::seconds(7);
 
     sf::Clock shoot_clock;
     sf::Time time_since_last_shoot = sf::Time::Zero;

@@ -44,9 +44,21 @@ void Asteroid::reactCollision(const Entity& other) {
         game_manager.addScore(score_value, sprite.getPosition());
         game_manager.addExplosion(sprite.getPosition());
         auto generator = std::random_device();
-        auto spawn_heart_distribution = std::uniform_int_distribution(0, 30);
-        if (spawn_heart_distribution(generator) == 0)
-            game_manager.addHeart(sprite.getPosition());
+        auto spawn_bonus_distribution = std::uniform_int_distribution(0, 20);
+        if (spawn_bonus_distribution(generator) == 0) {
+            auto bonus_type_distribution = std::uniform_int_distribution(0, 1);
+            auto random_bonus_type = bonus_type_distribution(generator);
+            switch(random_bonus_type) {
+                case bonus_type::Heart:
+                    game_manager.addHeart(sprite.getPosition());
+                    break;
+                case bonus_type::SpeedBoost:
+                    game_manager.addSpeedBoost(sprite.getPosition());
+                    break;
+                default:
+                    break;
+            }
+        }
         destructed = true;
         if (counter < counter_max)
             for (auto i=0; i < amount_of_children; i++)

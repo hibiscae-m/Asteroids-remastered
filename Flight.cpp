@@ -22,7 +22,7 @@ void Flight::handlePlayerInputs(const float delta_time) {
 }
 
 void Flight::move(const float delta_time) {
-    checkHealth();
+    update();
     if (!damaged)
         shoot();
     handlePlayerInputs(delta_time);
@@ -55,6 +55,13 @@ void Flight::reactCollision(const Entity& other) {
             game_manager.setUIHealth(health);
         }
     }
+    else if (other.getType() == Type::ShootSpeed) {
+        if (!shootspeed_boosted) {
+            shootspeed_boosted = true;
+            shoot_cooldown = sf::milliseconds(shoot_cooldown.asMilliseconds() / 2);
+        }
+        shootspeed_bonus_clock.restart();
+    }
 }
 
 void Flight::checkHealth() {
@@ -74,6 +81,20 @@ void Flight::checkHealth() {
                 damaged = false;
                 isVisible = true;
             }
+        }
+    }
+}
+
+void Flight::update() {
+    checkHealth();
+    checkBonus();
+}
+
+void Flight::checkBonus() {
+    if (shootspeed_boosted) {
+        if (shootspeed_bonus_clock.getElapsedTime() >= shootspeed_bonus_duration) {
+            shootspeed_boosted = false;
+            shoot_cooldown = sf::milliseconds(shoot_cooldown.asMilliseconds() * 2);
         }
     }
 }

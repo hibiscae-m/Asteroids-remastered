@@ -5,7 +5,7 @@
 #include "Heart.h"
 
 Heart::Heart(GameManager& game_manager, sf::Vector2f position)
-  : Bonus(game_manager, position, "resources/heart.png")
+  : Bonus(game_manager, position, "resources/heart_bonus.png")
 {
     type = Type::Heart;
 }

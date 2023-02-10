@@ -21,6 +21,7 @@ public:
     void addAsteroid();
     void addExplosion(sf::Vector2f position);
     void addHeart(sf::Vector2f position);
+    void addSpeedBoost(sf::Vector2f position);
     void addToBuffer(std::unique_ptr<Entity> entity);
 
     void addScore(int value, sf::Vector2f position);
