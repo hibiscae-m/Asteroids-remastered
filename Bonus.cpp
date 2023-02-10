@@ -9,7 +9,6 @@ Bonus::Bonus(GameManager& game_manager, sf::Vector2f position, std::string_view 
           game_manager(game_manager)
 {
     sprite.setPosition(position);
-    hitbox.setRadius(static_cast<float>(hitbox.getRadius() * 0.3));
     hitbox.setOrigin(hitbox.getGlobalBounds().width/2, hitbox.getGlobalBounds().height/2);
     hitbox.setPosition(sprite.getPosition());
 }
