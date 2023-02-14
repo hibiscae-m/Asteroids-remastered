@@ -13,6 +13,7 @@ class Flight : public Entity {
 public:
     Flight(GameManager& game_manager, float position_x, float position_y);
     void move(float delta_time) override;
+    void draw(sf::RenderWindow &window) const override;
 private:
     void handlePlayerInputs(float delta_time);
     void shoot();
@@ -35,6 +36,9 @@ private:
     bool shootspeed_boosted = false;
     sf::Clock shootspeed_bonus_clock;
     sf::Time shootspeed_bonus_duration = sf::seconds(7);
+
+    bool has_shield = false;
+    sf::CircleShape shield;
 
     sf::Clock shoot_clock;
     sf::Time time_since_last_shoot = sf::Time::Zero;

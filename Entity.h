@@ -14,6 +14,7 @@ enum class Type {
     Missile,
     Heart,
     ShootSpeed,
+    Shield,
     Other
 };
 

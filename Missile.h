@@ -13,8 +13,8 @@ public:
     Missile() = delete;
     Missile(sf::Vector2f position, float angle);
     void move(float delta_time) override;
-    void reactCollision(const Entity& other) override;
 private:
+    void reactCollision(const Entity& other) override;
     sf::Time lifetime = sf::Time::Zero;
     sf::Clock clock;
 };

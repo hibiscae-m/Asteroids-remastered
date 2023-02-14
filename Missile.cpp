@@ -25,6 +25,5 @@ void Missile::move(float delta_time) {
 void Missile::reactCollision(const Entity& other) {
     if (other.getType() == Type::Asteroid) {
         destructed = true;
-        type = Type::Other; // Prevents missiles to destroy all lv 2 asteroids
     }
 }

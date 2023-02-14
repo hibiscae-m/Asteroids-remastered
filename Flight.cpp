@@ -8,6 +8,9 @@
 Flight::Flight(GameManager& game_manager, float position_x, float position_y) : Entity("resources/flight.png"), game_manager(game_manager) {
     sprite.setPosition(position_x, position_y);
     type = Type::Flight;
+    shield.setRadius(sprite.getGlobalBounds().width * 0.9f);
+    shield.setOrigin(shield.getGlobalBounds().width / 2, shield.getGlobalBounds().height / 2);
+    shield.setFillColor(sf::Color(135, 206, 250, 125));
 }
 
 void Flight::handlePlayerInputs(const float delta_time) {
@@ -45,8 +48,12 @@ void Flight::reactCollision(const Entity& other) {
             damage_clock.restart();
             blink_clock.restart();
             damaged = true;
-            health--;
-            game_manager.setUIHealth(health);
+            if (!has_shield) {
+                health--;
+                game_manager.setUIHealth(health);
+            }
+            else
+                has_shield = false;
         }
     }
     else if (other.getType() == Type::Heart) {
@@ -61,6 +68,9 @@ void Flight::reactCollision(const Entity& other) {
             shoot_cooldown = sf::milliseconds(shoot_cooldown.asMilliseconds() / 2);
         }
         shootspeed_bonus_clock.restart();
+    }
+    else if (other.getType() == Type::Shield) {
+        has_shield = true;
     }
 }
 
@@ -86,6 +96,7 @@ void Flight::checkHealth() {
 }
 
 void Flight::update() {
+    shield.setPosition(sprite.getPosition());
     checkHealth();
     checkBonus();
 }
@@ -97,4 +108,10 @@ void Flight::checkBonus() {
             shoot_cooldown = sf::milliseconds(shoot_cooldown.asMilliseconds() * 2);
         }
     }
+}
+
+void Flight::draw(sf::RenderWindow &window) const {
+    if (has_shield)
+        window.draw(shield);
+    Entity::draw(window);
 }

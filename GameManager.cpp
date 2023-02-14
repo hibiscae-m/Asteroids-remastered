@@ -9,6 +9,7 @@
 #include "TextScore.h"
 #include "Heart.h"
 #include "ShootSpeed.h"
+#include "Shield.h"
 
 #include <random>
 #include <cmath>
@@ -62,6 +63,10 @@ void GameManager::addHeart(sf::Vector2f position) {
 
 void GameManager::addSpeedBoost(sf::Vector2f position) {
     addToBuffer(std::make_unique<SpeedBoost>(*this, position));
+}
+
+void GameManager::addShield(sf::Vector2f position) {
+    addToBuffer(std::make_unique<Shield>(*this, position));
 }
 
 void GameManager::add() {
