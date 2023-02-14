@@ -26,7 +26,7 @@ void Entity::move(const float delta_time) {
 void Entity::draw(sf::RenderWindow& window) const {
     if (isVisible)
         window.draw(sprite);
-    //window.draw(hitbox);
+    window.draw(hitbox);
 }
 
 float Entity::getDistance(sf::Vector2f first, sf::Vector2f second) const {
