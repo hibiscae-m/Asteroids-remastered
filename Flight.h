@@ -40,6 +40,10 @@ private:
     bool has_shield = false;
     sf::CircleShape shield;
 
+    bool multipleshots_bonus = false;
+    sf::Clock multipleshots_bonus_clock;
+    sf::Time multipleshots_bonus_duration = sf::seconds(7);
+
     sf::Clock shoot_clock;
     sf::Time time_since_last_shoot = sf::Time::Zero;
     sf::Time shoot_cooldown = sf::milliseconds(300);

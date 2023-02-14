@@ -39,6 +39,10 @@ void Flight::shoot() {
     if (time_since_last_shoot > shoot_cooldown) {
         time_since_last_shoot = sf::Time::Zero;
         game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation()));
+        if (multipleshots_bonus) {
+            game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation() - 15));
+            game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation() + 15));
+        }
     }
 }
 
@@ -69,8 +73,12 @@ void Flight::reactCollision(const Entity& other) {
         }
         shootspeed_bonus_clock.restart();
     }
-    else if (other.getType() == Type::Shield) {
+    else if (other.getType() == Type::Shield)
         has_shield = true;
+    else if (other.getType() == Type::MultipleShots) {
+        if (!multipleshots_bonus)
+            multipleshots_bonus = true;
+        multipleshots_bonus_clock.restart();
     }
 }
 
@@ -108,6 +116,9 @@ void Flight::checkBonus() {
             shoot_cooldown = sf::milliseconds(shoot_cooldown.asMilliseconds() * 2);
         }
     }
+    if (multipleshots_bonus)
+        if (multipleshots_bonus_clock.getElapsedTime() >= multipleshots_bonus_duration)
+            multipleshots_bonus = false;
 }
 
 void Flight::draw(sf::RenderWindow &window) const {

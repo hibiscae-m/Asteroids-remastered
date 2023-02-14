@@ -47,7 +47,7 @@ void Asteroid::reactCollision(const Entity& other) {
         auto generator = std::random_device();
         auto spawn_bonus_distribution = std::uniform_int_distribution(0, 20);
         if (spawn_bonus_distribution(generator) == 0) {
-            auto bonus_type_distribution = std::uniform_int_distribution(0, 2);
+            auto bonus_type_distribution = std::uniform_int_distribution(0, 3);
             auto random_bonus_type = bonus_type_distribution(generator);
             switch(random_bonus_type) {
                 case bonus_type::Heart:
@@ -58,6 +58,9 @@ void Asteroid::reactCollision(const Entity& other) {
                     break;
                 case bonus_type::Shield:
                     game_manager.addShield(sprite.getPosition());
+                    break;
+                case bonus_type::MultipleShots:
+                    game_manager.addMultipleShots(sprite.getPosition());
                     break;
                 default:
                     break;

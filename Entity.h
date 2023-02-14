@@ -15,6 +15,7 @@ enum class Type {
     Heart,
     ShootSpeed,
     Shield,
+    MultipleShots,
     Other
 };
 
