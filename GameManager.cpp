@@ -119,8 +119,13 @@ void GameManager::update() {
     spawnAsteroids();
     add();
     if (ending_game)
-        if (game_over_clock.getElapsedTime() > game_over_timer)
+        if (game_over_clock.getElapsedTime() > game_over_timer) {
+            for (const auto& entity: entities) {
+                entity->callDestruction();
+            }
+            ending_game = false;
             game_over = true;
+        }
 }
 
 void GameManager::addScore(int value, sf::Vector2f position) {

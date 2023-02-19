@@ -22,6 +22,11 @@ private:
     void checkBonus();
     void update();
 
+public:
+    void callDestruction() override;
+
+private:
+
     const float ACCELERATION = 70.f;
     const float ANGLE_SPEED = 200.f;
     const float FRICTION= 3.f;

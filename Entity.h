@@ -31,7 +31,7 @@ public:
     inline Type getType() const { return type; };
     inline int getScoreValue() const { return score_value; };
     inline bool isDestructed() const { return destructed; };
-    inline void callDestruction() { destructed = true; };
+    virtual inline void callDestruction() { destructed = true; };
 protected:
     virtual void reactCollision(const Entity& other);
     bool isVisible = true;

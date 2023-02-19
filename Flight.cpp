@@ -84,9 +84,7 @@ void Flight::reactCollision(const Entity& other) {
 
 void Flight::checkHealth() {
     if (health <= 0) {
-        destructed = true;
-        game_manager.addExplosion(sprite.getPosition());
-        game_manager.callGameOver();
+        callDestruction();
     }
     else {
         if (damaged) {
@@ -126,4 +124,10 @@ void Flight::draw(sf::RenderWindow &window) const {
     if (has_shield)
         window.draw(shield);
     Entity::draw(window);
+}
+
+void Flight::callDestruction() {
+    Entity::callDestruction();
+    game_manager.addExplosion(sprite.getPosition());
+    game_manager.callGameOver();
 }

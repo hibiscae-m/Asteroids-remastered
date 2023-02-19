@@ -30,8 +30,8 @@ void Game::run() {
 }
 
 void Game::start() {
-    game_manager.setGameOver(false);
     game_manager.addFlight();
+    game_manager.setGameOver(false);
 }
 
 void Game::processEvents() {
