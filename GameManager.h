@@ -44,6 +44,7 @@ private:
     void checkPosition() const;
     void checkLevel();
     void spawnAsteroids();
+    void reset();
 
     bool ending_game = false;
     sf::Clock game_over_clock;

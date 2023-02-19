@@ -22,7 +22,7 @@ public:
     void setLevel(int level);
     void setHealth(short health);
 
-    inline short getChoice() { return choice; };
+    inline short getChoice() const { return choice; };
     void increment();
     void decrement();
 

@@ -114,18 +114,19 @@ void GameManager::clear() {
 }
 
 void GameManager::update() {
-    clear();
-    checkLevel();
-    spawnAsteroids();
-    add();
     if (ending_game)
         if (game_over_clock.getElapsedTime() > game_over_timer) {
             for (const auto& entity: entities) {
                 entity->callDestruction();
             }
+            reset();
             ending_game = false;
             game_over = true;
         }
+    clear();
+    checkLevel();
+    spawnAsteroids();
+    add();
 }
 
 void GameManager::addScore(int value, sf::Vector2f position) {
@@ -154,4 +155,11 @@ void GameManager::setGameOver(bool statement) {
 void GameManager::callGameOver() {
     game_over_clock.restart();
     ending_game = true;
+}
+
+void GameManager::reset() {
+    level = 1;
+    score = 0;
+    ui.setScore(score);
+    setUIHealth(3);
 }
