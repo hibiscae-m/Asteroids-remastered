@@ -19,6 +19,9 @@ public:
 private:
     void processEvents();
     void render();
+    void start();
+
+    bool game_started = false;
 
     sf::RenderWindow window;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);

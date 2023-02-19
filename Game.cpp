@@ -15,7 +15,6 @@ Game::Game() :
 {}
 
 void Game::run() {
-    game_manager.addFlight();
     sf::Clock clock;
     sf::Time time_since_last_update = sf::Time::Zero;
     while (window.isOpen()) {
@@ -24,9 +23,15 @@ void Game::run() {
             time_since_last_update -= TIME_PER_FRAME;
             processEvents();
             render();
-            game_manager.update();
+            if (game_started)
+                game_manager.update();
         }
     }
+}
+
+void Game::start() {
+    game_started = true;
+    game_manager.addFlight();
 }
 
 void Game::processEvents() {
@@ -34,15 +39,32 @@ void Game::processEvents() {
     while(window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            game_manager.addAsteroid();
+        if (!game_started) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+                if (ui.getChoice() == HomeChoices::Play)
+                    start();
+                else if (ui.getChoice() == HomeChoices::HighScores) {}
+                else if (ui.getChoice() == HomeChoices::Quit)
+                    window.close();
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                ui.increment();
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                ui.decrement();
+        }
     }
-    game_manager.move(loop.restart().asSeconds());
+    if (game_started)
+        game_manager.move(loop.restart().asSeconds());
 }
 
 void Game::render() {
     window.clear();
-    game_manager.draw();
-    ui.draw();
+    if (game_started) {
+        game_manager.draw();
+        ui.drawGameUi();
+    }
+    else {
+        ui.drawHomeUi();
+    }
     window.display();
 }

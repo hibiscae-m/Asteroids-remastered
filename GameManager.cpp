@@ -47,7 +47,7 @@ void GameManager::addAsteroid() {
 void GameManager::spawnAsteroids() {
     time_since_last_asteroid += asteroid_spawn_clock.restart();
     if (time_since_last_asteroid > asteroid_spawn_timer) {
-        time_since_last_asteroid -= asteroid_spawn_timer;
+        time_since_last_asteroid = sf::Time::Zero;
         // additional asteroid every 5 levels
         for (auto i = 0; i <= static_cast<int>(trunc(static_cast<float>(level) / 5)); i++)
             addAsteroid();
@@ -81,7 +81,7 @@ void GameManager::add() {
 }
 
 void GameManager::draw() const {
-    // Going in reverse order to draw Flight above the rest
+    // Going in reverse order to drawGameUi Flight above the rest
     for (auto i = entities.size(); i > 0u; i--)
         entities[i-1]->draw(window);
 }

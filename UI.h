@@ -7,19 +7,35 @@
 
 #include <SFML/Graphics.hpp>
 
+enum HomeChoices {
+    Play,
+    HighScores,
+    Quit
+};
+
 class UI {
 public:
     explicit UI(sf::RenderWindow& window);
-    void draw();
+    void drawGameUi();
+    void drawHomeUi();
     void setScore(int score);
     void setLevel(int level);
     void setHealth(short health);
+
+    inline short getChoice() { return choice; };
+    void increment();
+    void decrement();
+
 private:
     sf::RenderWindow& window;
 
     sf::Font font;
     sf::Text text_score;
     sf::Text text_level;
+    sf::Text text_choice;
+
+    short choice = 0;
+    std::string_view textChoiceUpdate() const;
 
     sf::Texture texture;
     sf::Sprite sprite;
