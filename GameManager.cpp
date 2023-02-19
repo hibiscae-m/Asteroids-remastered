@@ -118,6 +118,9 @@ void GameManager::update() {
     checkLevel();
     spawnAsteroids();
     add();
+    if (ending_game)
+        if (game_over_clock.getElapsedTime() > game_over_timer)
+            game_over = true;
 }
 
 void GameManager::addScore(int value, sf::Vector2f position) {
@@ -137,4 +140,13 @@ void GameManager::checkLevel() {
         ui.setLevel(level);
         asteroid_spawn_timer = sf::seconds(1 / static_cast<float>(level) + 2);
     }
+}
+
+void GameManager::setGameOver(bool statement) {
+    game_over = statement;
+}
+
+void GameManager::callGameOver() {
+    game_over_clock.restart();
+    ending_game = true;
 }

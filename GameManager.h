@@ -17,6 +17,10 @@ public:
     GameManager() = delete;
     explicit GameManager(sf::RenderWindow& window, UI& ui);
 
+    inline bool isGameOver() { return game_over; };
+    void setGameOver(bool statement);
+    void callGameOver();
+
     void addFlight();
     void addAsteroid();
     void addExplosion(sf::Vector2f position);
@@ -40,6 +44,11 @@ private:
     void checkPosition() const;
     void checkLevel();
     void spawnAsteroids();
+
+    bool ending_game = false;
+    sf::Clock game_over_clock;
+    sf::Time game_over_timer = sf::seconds(2);
+    bool game_over = true;
 
     std::vector<std::unique_ptr<Entity>> entities{};
     std::vector<std::unique_ptr<Entity>> buffer{};

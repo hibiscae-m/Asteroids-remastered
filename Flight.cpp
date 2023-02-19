@@ -86,6 +86,7 @@ void Flight::checkHealth() {
     if (health <= 0) {
         destructed = true;
         game_manager.addExplosion(sprite.getPosition());
+        game_manager.callGameOver();
     }
     else {
         if (damaged) {

@@ -23,14 +23,14 @@ void Game::run() {
             time_since_last_update -= TIME_PER_FRAME;
             processEvents();
             render();
-            if (game_started)
+            if (!game_manager.isGameOver())
                 game_manager.update();
         }
     }
 }
 
 void Game::start() {
-    game_started = true;
+    game_manager.setGameOver(false);
     game_manager.addFlight();
 }
 
@@ -39,7 +39,7 @@ void Game::processEvents() {
     while(window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
-        if (!game_started) {
+        if (game_manager.isGameOver()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
                 if (ui.getChoice() == HomeChoices::Play)
                     start();
@@ -53,13 +53,13 @@ void Game::processEvents() {
                 ui.decrement();
         }
     }
-    if (game_started)
+    if (!game_manager.isGameOver())
         game_manager.move(loop.restart().asSeconds());
 }
 
 void Game::render() {
     window.clear();
-    if (game_started) {
+    if (!game_manager.isGameOver()) {
         game_manager.draw();
         ui.drawGameUi();
     }
