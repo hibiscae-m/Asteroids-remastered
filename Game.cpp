@@ -43,7 +43,6 @@ void Game::processEvents() {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
                 if (ui.getChoice() == HomeChoices::Play)
                     start();
-                else if (ui.getChoice() == HomeChoices::HighScores) {}
                 else if (ui.getChoice() == HomeChoices::Quit)
                     window.close();
             }

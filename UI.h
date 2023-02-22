@@ -9,7 +9,6 @@
 
 enum HomeChoices {
     Play,
-    HighScores,
     Quit
 };
 

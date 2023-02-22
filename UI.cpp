@@ -62,7 +62,7 @@ void UI::setHealth(short health) {
 
 void UI::increment() {
     choice++;
-    if (choice > 2)
+    if (choice > 1)
         choice = 0;
     text_choice.setString(textChoiceUpdate().data());
     text_choice.setOrigin(text_choice.getLocalBounds().width / 2, text_choice.getLocalBounds().height / 2);
@@ -72,7 +72,7 @@ void UI::increment() {
 void UI::decrement() {
     choice--;
     if (choice < 0)
-        choice = 2;
+        choice = 1;
     text_choice.setString(textChoiceUpdate().data());
     text_choice.setOrigin(text_choice.getLocalBounds().width / 2, text_choice.getLocalBounds().height / 2);
     text_choice.setPosition(static_cast<float>(window.getSize().x) / 2, static_cast<float>(window.getSize().y) / 2);
@@ -82,8 +82,6 @@ std::string_view UI::textChoiceUpdate() const {
     switch (choice) {
         case::HomeChoices::Play:
             return "Play";
-        case::HomeChoices::HighScores:
-            return "HighScores";
         case::HomeChoices::Quit:
             return "Quit";
         default:
