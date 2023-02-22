@@ -66,6 +66,7 @@ private:
     float asteroid_max_speed = 400;
 
     int score = 0;
+    int highscore = 0;
     int score_level_bearing = 500; //level will up every X points
     int level = 1;
 };

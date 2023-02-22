@@ -19,7 +19,7 @@ public:
     void drawGameUi();
     void drawHomeUi();
     void setScore(int score);
-    void setLevel(int level);
+    void setHighscore(int score);
     void setHealth(short health);
 
     inline short getChoice() const { return choice; };
@@ -31,7 +31,7 @@ private:
 
     sf::Font font;
     sf::Text text_score;
-    sf::Text text_level;
+    sf::Text text_highscore;
     sf::Text text_choice;
 
     short choice = 0;

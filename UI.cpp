@@ -14,10 +14,9 @@ UI::UI(sf::RenderWindow& window) : window(window) {
     text_score.setPosition(30, 30);
     text_score.setString("Score: " + std::to_string(0));
 
-    text_level.setFont(font);
-    text_level.setScale(1.5, 1.5);
-    text_level.setPosition(30, 100);
-    text_level.setString("Level: " + std::to_string(1));
+    text_highscore.setFont(font);
+    text_highscore.setScale(1.5, 1.5);
+    text_highscore.setPosition(30, 100);
 
     text_choice.setFont(font);
     text_choice.setScale(4, 4);
@@ -39,14 +38,14 @@ void UI::setScore(int score) {
     text_score.setString("Score: " + std::to_string(score));
 }
 
-void UI::setLevel(int level) {
-    text_level.setString("Level: " + std::to_string(level));
+void UI::setHighscore(int score) {
+    text_highscore.setString("Highscore: " + std::to_string(score));
 }
 
 void UI::drawGameUi() {
     window.draw(text_score);
     window.draw(sprite);
-    window.draw(text_level);
+    window.draw(text_highscore);
 }
 
 void UI::drawHomeUi() {

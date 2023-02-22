@@ -14,12 +14,19 @@
 
 #include <random>
 #include <cmath>
+#include <fstream>
 
 GameManager::GameManager(sf::RenderWindow& window, UI& ui) :
     living_space{window, OOB_limit},
     window(window),
     ui(ui)
 {
+    std::ifstream file;
+    file.open("data.bin", std::ios::binary);
+    if (file.is_open()) {
+        file.read(reinterpret_cast<char*>(&highscore), sizeof(highscore));
+        file.close();
+    }
 }
 
 void GameManager::addToBuffer(std::unique_ptr<Entity> entity) {
@@ -114,10 +121,20 @@ void GameManager::clear() {
 }
 
 void GameManager::update() {
+    if (highscore < score) {
+        highscore = score;
+        ui.setHighscore(score);
+    }
     if (ending_game)
         if (game_over_clock.getElapsedTime() > game_over_timer) {
             for (const auto& entity: entities) {
                 entity->callDestruction();
+            }
+            std::ofstream file;
+            file.open("data.bin", std::ios::binary);
+            if (file.is_open()) {
+                file.write(reinterpret_cast<char*>(&highscore), sizeof(highscore));
+                file.close();
             }
             reset();
             ending_game = false;
@@ -143,12 +160,12 @@ void GameManager::checkLevel() {
     auto checking_level = static_cast<int>(trunc((score / score_level_bearing) + 1));
     if (level != checking_level) {
         level = checking_level;
-        ui.setLevel(level);
         asteroid_spawn_timer = sf::seconds(1 / static_cast<float>(level) + 2);
     }
 }
 
 void GameManager::setGameOver(bool statement) {
+    ui.setHighscore(highscore);
     game_over = statement;
 }
 
