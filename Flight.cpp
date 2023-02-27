@@ -3,6 +3,7 @@
 //
 
 #include "Flight.h"
+#include "ResourcesManager.h"
 #include "Missile.h"
 
 Flight::Flight(GameManager& game_manager, float position_x, float position_y) : Entity("resources/flight.png"), game_manager(game_manager) {
@@ -11,6 +12,7 @@ Flight::Flight(GameManager& game_manager, float position_x, float position_y) : 
     shield.setRadius(sprite.getGlobalBounds().width * 0.9f);
     shield.setOrigin(shield.getGlobalBounds().width / 2, shield.getGlobalBounds().height / 2);
     shield.setFillColor(sf::Color(135, 206, 250, 125));
+    sound.setBuffer(ResourcesManager<sf::SoundBuffer>::getResource("resources/missile.wav"));
 }
 
 void Flight::handlePlayerInputs(const float delta_time) {
@@ -38,6 +40,7 @@ void Flight::shoot() {
     time_since_last_shoot += shoot_clock.restart();
     if (time_since_last_shoot > shoot_cooldown) {
         time_since_last_shoot = sf::Time::Zero;
+        sound.play();
         game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation()));
         if (multipleshots_bonus) {
             game_manager.addToBuffer(std::make_unique<Missile>(sprite.getPosition(), sprite.getRotation() - 15));

@@ -13,10 +13,6 @@ Missile::Missile(sf::Vector2f position, float angle) : Entity("resources/missile
     this->angle = angle;
     sprite.setRotation(this->angle);
     speed = 3000.f;
-
-    sound.setBuffer(ResourcesManager<sf::SoundBuffer>::getResource("resources/missile.wav"));
-    sound.setVolume(1);
-    sound.play();
 }
 
 void Missile::move(float delta_time) {

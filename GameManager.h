@@ -6,6 +6,7 @@
 #define ASTEROIDS_GAMEMANAGER_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 
 #include "Entity.h"
@@ -45,6 +46,8 @@ private:
     void checkLevel();
     void spawnAsteroids();
     void reset();
+
+    sf::Music music;
 
     bool ending_game = false;
     sf::Clock game_over_clock;

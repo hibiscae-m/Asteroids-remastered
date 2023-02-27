@@ -18,7 +18,6 @@ private:
     void reactCollision(const Entity& other) override;
     sf::Time lifetime = sf::Time::Zero;
     sf::Clock clock;
-    sf::Sound sound;
 };
 
 

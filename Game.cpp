@@ -4,15 +4,15 @@
 
 #include "Game.h"
 
-constexpr float WINDOW_WIDTH{1900};
-constexpr float WINDOW_LENGTH{1200};
 constexpr std::string_view WINDOW_TITLE{"Game!"};
 
 Game::Game() :
-    window{sf::VideoMode(WINDOW_WIDTH, WINDOW_LENGTH), WINDOW_TITLE.data()},
+    window{sf::VideoMode(), WINDOW_TITLE.data(), sf::Style::Fullscreen},
     game_manager(window, ui),
     ui(window)
-{}
+{
+    window.setMouseCursorVisible(false);
+}
 
 void Game::run() {
     sf::Clock clock;

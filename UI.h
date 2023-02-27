@@ -28,6 +28,8 @@ public:
 private:
     sf::RenderWindow& window;
 
+    sf::Sprite home_screen;
+
     sf::Font font;
     sf::Text text_score;
     sf::Text text_highscore;

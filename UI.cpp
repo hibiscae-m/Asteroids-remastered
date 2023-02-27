@@ -4,11 +4,16 @@
 
 #include "UI.h"
 #include "AirAmericana.h"
+#include "ResourcesManager.h"
 
 UI::UI(sf::RenderWindow& window) : window(window) {
     if (!font.loadFromMemory(Air_Americana_ttf, Air_Americana_ttf_size)) {
         throw std::runtime_error("Unable to access font");
     }
+
+    home_screen.setTexture(ResourcesManager<sf::Texture>::getResource("resources/home.png"));
+    home_screen.setScale(static_cast<float>(window.getSize().x) / home_screen.getLocalBounds().width, static_cast<float>(window.getSize().y) / home_screen.getLocalBounds().height);
+
     text_score.setFont(font);
     text_score.setScale(2, 2);
     text_score.setPosition(30, 30);
@@ -49,6 +54,7 @@ void UI::drawGameUi() {
 }
 
 void UI::drawHomeUi() {
+    window.draw(home_screen);
     window.draw(text_choice);
 }
 

@@ -6,6 +6,7 @@
 #define ASTEROIDS_FLIGHT_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Entity.h"
 #include "GameManager.h"
 
@@ -26,6 +27,7 @@ public:
     void callDestruction() override;
 
 private:
+    sf::Sound sound;
 
     const float ACCELERATION = 70.f;
     const float ANGLE_SPEED = 200.f;

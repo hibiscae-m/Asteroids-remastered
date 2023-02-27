@@ -27,6 +27,13 @@ GameManager::GameManager(sf::RenderWindow& window, UI& ui) :
         file.read(reinterpret_cast<char*>(&highscore), sizeof(highscore));
         file.close();
     }
+    if (!music.openFromFile("resources/midnight-alexiaction.wav")) {
+        // loading errors
+    }
+    music.play();
+    music.setLoopPoints(sf::Music::TimeSpan(sf::seconds(15), sf::seconds(150)));
+    music.setLoop(true);
+    music.setVolume(33);
 }
 
 void GameManager::addToBuffer(std::unique_ptr<Entity> entity) {
@@ -140,6 +147,10 @@ void GameManager::update() {
             ending_game = false;
             game_over = true;
         }
+    if (game_over)
+        music.setVolume(33);
+    else
+        music.setVolume(100);
     clear();
     checkLevel();
     spawnAsteroids();

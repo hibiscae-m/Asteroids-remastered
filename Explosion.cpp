@@ -9,7 +9,6 @@ Explosion::Explosion(sf::Vector2f position) : Entity("resources/explosion.png") 
     sprite.setPosition(position);
     sprite.setScale(0, 0);
     sound.setBuffer(ResourcesManager<sf::SoundBuffer>::getResource("resources/explosion.wav"));
-    sound.setVolume(0.5);
     sound.play();
 }
 
