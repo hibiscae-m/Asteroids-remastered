@@ -4,6 +4,7 @@
 
 #include "Asteroid.h"
 #include <random>
+#include "ResourcesManager.h"
 
 Asteroid::Asteroid(GameManager& game_manager, sf::Vector2f random_position, float random_angle, float random_speed) :
     Entity("resources/asteroid.png"),

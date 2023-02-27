@@ -6,6 +6,7 @@
 #define ASTEROIDS_ASTEROID_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Entity.h"
 #include "GameManager.h"
 #include <random>

@@ -6,6 +6,7 @@
 #define ASTEROIDS_EXPLOSION_H
 
 #include "Entity.h"
+#include <SFML/Audio.hpp>
 
 class Explosion : public Entity {
 public:
@@ -17,6 +18,7 @@ private:
     sf::Clock loop{};
     sf::Time time_before_dies = sf::milliseconds(100);
     sf::Time lifetime = sf::Time::Zero;
+    sf::Sound sound;
 };
 
 

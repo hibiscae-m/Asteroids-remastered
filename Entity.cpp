@@ -4,12 +4,12 @@
 
 #include "Entity.h"
 #include "Vector.h"
-#include <iostream>
 #include <cmath>
+#include <SFML/Graphics.hpp>
 #include "ResourcesManager.h"
 
 Entity::Entity(const std::string_view texture_location) {
-    sprite.setTexture(ResourcesManager::getResource(texture_location));
+    sprite.setTexture(ResourcesManager<sf::Texture>::getResource(texture_location));
     sprite.setOrigin(sprite.getGlobalBounds().width/2, sprite.getGlobalBounds().height/2);
     hitbox.setRadius(sprite.getGlobalBounds().width/2);
     hitbox.setOrigin(hitbox.getGlobalBounds().width/2, hitbox.getGlobalBounds().height/2);

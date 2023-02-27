@@ -7,6 +7,7 @@
 
 #include "Entity.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class Missile : public Entity {
 public:
@@ -17,6 +18,7 @@ private:
     void reactCollision(const Entity& other) override;
     sf::Time lifetime = sf::Time::Zero;
     sf::Clock clock;
+    sf::Sound sound;
 };
 
 

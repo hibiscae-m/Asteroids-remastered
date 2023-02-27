@@ -3,16 +3,11 @@
 //
 
 #include "ResourcesManager.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
-std::unordered_map<std::string_view, sf::Texture> ResourcesManager::resources{};
+template<>
+std::unordered_map<std::string_view, sf::Texture> ResourcesManager<sf::Texture>::resources{};
 
-sf::Texture const &ResourcesManager::getResource(const std::string_view &texture_location) {
-    auto result = resources.find(texture_location);
-    if (result == std::end(resources)) {
-        if (!resources[texture_location].loadFromFile(texture_location.data())) {
-            // Handle loading error
-        }
-        return resources[texture_location];
-    }
-    return result->second;
-}
+template<>
+std::unordered_map<std::string_view, sf::SoundBuffer> ResourcesManager<sf::SoundBuffer>::resources{};
