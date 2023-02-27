@@ -4,10 +4,12 @@
 
 #include "Game.h"
 
+constexpr unsigned int WINDOW_WIDTH = 1920;
+constexpr unsigned int WINDOW_LENGTH = 1080;
 constexpr std::string_view WINDOW_TITLE{"Game!"};
 
 Game::Game() :
-    window{sf::VideoMode(), WINDOW_TITLE.data(), sf::Style::Fullscreen},
+    window{sf::VideoMode(WINDOW_WIDTH, WINDOW_LENGTH), WINDOW_TITLE.data(), sf::Style::Fullscreen},
     game_manager(window, ui),
     ui(window)
 {
