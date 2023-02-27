@@ -4,7 +4,7 @@ Training by reproducing classic asteroid game from scratch using cpp &amp; SFML.
 
 **THE CODE IS MESSY**
 
-And I know it :) I've made it for training purposes througg my learning and will do better onto the next project !
+And I know it :) I've made it for training purposes through my learning and will do better onto the next project !
 
 # Credits
 
