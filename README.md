@@ -10,7 +10,7 @@ And I know it :) I've made it for training purposes througg my learning and will
 
 Asteroid-remastered is based on the work of Nicolas Koenig and his formation courses : https://www.udemy.com/course/le-cpp-moderne-par-le-developpement-de-jeux/
 
-Most of the assets are from there or handmade (use Zelda's heart containers also).
+Most of the assets are from there or handmade (used Zelda's heart containers also).
 
 Huge thanks to Mosh Hamedani and his ultimate C++ course : https://codewithmosh.com
 
