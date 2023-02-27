@@ -22,6 +22,7 @@ enum class Type {
 class Entity {
 public:
     Entity() = default;
+    virtual ~Entity() = default;
     explicit Entity(std::string_view texture_location);
     virtual void draw(sf::RenderWindow& window) const;
     virtual void move(float delta_time);
